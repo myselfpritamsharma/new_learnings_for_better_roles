@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Mentor — Study Dashboard (DSA | LLD | HLD)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        nav {
+            background: #f8f9fa;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 0 20px;
+        }
+        
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+        
+        nav a:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        section {
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h4 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .pattern-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .difficulty-easy {
+            background: #28a745;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        details {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+            margin: 15px 0;
+            padding: 16px 20px;
+        }
+
+        summary {
+            color: #667eea;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.05em;
+        }
+
+        details[open] summary {
+            margin-bottom: 12px;
+        }
+
+        .note-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin: 15px 0;
+        }
+
+        .mini-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 14px;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+        
+        .timestamp {
+            color: #999;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+        
+        ul {
+            margin-left: 20px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        a {
+            color: #667eea;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Coding Mentor — Study Dashboard</h1>
+            <p>Master DSA | LLD | HLD → Win ₹50L–₹80L Tech Roles</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Target: 4–5 months | Strategy: Gate (DSA) → Differentiate (LLD) → Leverage (HLD)</p>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#progress">📊 Progress</a></li>
+                <li><a href="#today-task">📋 Today's Task</a></li>
+                <li><a href="#dsa">🎯 DSA</a></li>
+                <li><a href="#lld">🏗️ LLD</a></li>
+                <li><a href="#hld">🌐 HLD</a></li>
+            </ul>
+        </nav>
+        
+        <div class="content">
+            <!-- PROGRESS -->
+            <section id="progress">
+                <h2>📊 Progress & Timeline</h2>
+                
+                <h3>Interview Strategy (Weeks 1–20)</h3>
+                <div class="highlight">
+                    <strong>🎯 DSA (Weeks 1–5):</strong> Gating filter. 150 NeetCode problems. Pass → continue to next round. Fail → rejected.<br><br>
+                    <strong>🏗️ LLD (Weeks 2–10):</strong> Differentiator. Separates ₹45L from ₹65L+. SOLID, design patterns, Rate Limiter, Cache, Logger.<br><br>
+                    <strong>🌐 HLD (Weeks 5–18):</strong> The real lever for ₹50L–₹80L. System design, distributed systems, trade-offs, Goldman/Uber/Google case studies.
+                </div>
+                
+                <h3>Current Status</h3>
+                <div class="card">
+                    <strong>Day:</strong> 3 of ~140<br>
+                    <strong>Phase:</strong> 1 (Weeks 1–2)<br>
+                    <strong>DSA Focus:</strong> Two-Pointer, Sliding Window<br>
+                    <strong>LLD Focus:</strong> SOLID Principles<br>
+                    <strong>HLD Focus:</strong> Foundations (later)<br>
+                    <strong>Progress:</strong> ✅ 2 DSA problems solved
+                </div>
+            </section>
+            
+            <!-- TODAY'S TASK -->
+            <section id="today-task">
+                <h2>📋 Today's Task (2026-09-01)</h2>
+
+                <h3>Task 1: DSA — Permutation in String</h3>
+                <div class="card">
+                    <strong>Status:</strong> ✅ SOLVED<br>
+                    <strong>Pattern:</strong> <span class="pattern-badge">Sliding Window + Frequency Map</span> | <strong>Difficulty:</strong> Medium<br>
+                    <strong>Hints:</strong> 1<br>
+                    <strong>Link:</strong> <a href="https://leetcode.com/problems/permutation-in-string/" target="_blank">Permutation in String</a><br>
+                    <strong>Solution:</strong>
+                    <pre>def checkInclusion(self, s1: str, s2: str) -> bool:
+    left = 0
+    window = {}
+    need = {}
+
+    for ch in s1:
+        need[ch] = need.get(ch, 0) + 1
+
+    for right in range(len(s2)):
+        window[s2[right]] = window.get(s2[right], 0) + 1
+
+        if right - left + 1 > len(s1):
+            window[s2[left]] -= 1
+            if window[s2[left]] == 0:
+                del window[s2[left]]
+            left += 1
+
+        if window == need:
+            return True
+
+    return False</pre>
+                    <strong>Takeaway:</strong> For fixed-size sliding window, add the incoming right character, remove the outgoing left character, then compare frequency maps.
+                </div>
+
+                <h3>Task 2: LLD — Rate Limiter Algorithm Choice</h3>
+                <div class="card">
+                    <strong>Status:</strong> To do<br>
+                    <strong>Time box:</strong> 25 minutes<br>
+                    <strong>Scenario:</strong> 100 requests/minute/user at API gateway level.<br>
+                    <strong>Deliverable:</strong> Choose Fixed Window, Sliding Window Log, Token Bucket, or Leaky Bucket. Give 2 reasons and 1 drawback.<br>
+                    <strong>Expected direction:</strong> Token Bucket is a strong default when controlled bursts are acceptable.
+                </div>
+
+                <h3>Task 3: SQL — JOIN Basics</h3>
+                <div class="card">
+                    <strong>Status:</strong> To do<br>
+                    <strong>Time box:</strong> 20 minutes<br>
+                    <strong>Topic:</strong> INNER JOIN vs LEFT JOIN.<br>
+                    <strong>Deliverable:</strong> Explain the difference in your own words and write one query joining <code>Users</code> and <code>Orders</code>.
+                </div>
+            </section>
+            
+            <!-- DSA SECTION -->
+            <section id="dsa">
+                <h2>🎯 DSA (Data Structures & Algorithms)</h2>
+                
+                <div class="highlight">
+                    <strong>Goal:</strong> Master 150 NeetCode problems across 12 patterns in weeks 1–5. DSA is your entry ticket. Master the patterns, solve fast, move on. This is NOT where ₹50L–₹80L comes from — that's LLD/HLD.
+                </div>
+
+                <div class="card">
+                    <strong>Repo files:</strong><br>
+                    <a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/DSA/two-pointer/valid-palindrome.py" target="_blank">Valid Palindrome solution</a><br>
+                    <a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/DSA/sliding-window/longest-substring-without-repeating-characters.py" target="_blank">Longest Substring Without Repeating Characters solution</a><br>
+                    <a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/DSA/sliding-window/permutation-in-string.py" target="_blank">Permutation in String solution</a>
+                </div>
+                
+                <h3>Pattern 1: Two-Pointer</h3>
+                <div class="card">
+                    <strong>Idea:</strong> Two indices moving strategically to avoid nested loops (O(n) vs O(n²)).<br>
+                    <strong>Problems:</strong> Valid Palindrome, Two Sum II, Container With Most Water, 3Sum<br>
+                    <strong>Key:</strong> Works on sorted arrays or when order property helps.<br>
+                    <strong>Status:</strong> <span class="pattern-badge">🟡 Yellow (1/3 solved)</span>
+                </div>
+
+                <details open>
+                    <summary>Day 1 Theory: Two-Pointer + Valid Palindrome</summary>
+                    <div class="note-grid">
+                        <div class="mini-card">
+                            <strong>Core idea</strong><br>
+                            Keep two pointers, usually <code>left</code> and <code>right</code>. Move them based on what the comparison tells you. This avoids checking all pairs.
+                        </div>
+                        <div class="mini-card">
+                            <strong>When to use</strong><br>
+                            Palindromes, sorted arrays, pair sums, reversing, container/water problems, or cases where both ends carry useful information.
+                        </div>
+                        <div class="mini-card">
+                            <strong>Interview language</strong><br>
+                            "I can solve this in one pass by maintaining two boundaries and moving only the pointer that cannot contribute to the answer."
+                        </div>
+                    </div>
+                    <strong>Valid Palindrome reasoning:</strong>
+                    <ul>
+                        <li>Ignore characters that are not letters/digits using <code>isalnum()</code>.</li>
+                        <li>Compare normalized characters using <code>lower()</code>.</li>
+                        <li>If both match, move inward. If mismatch, return <code>False</code>.</li>
+                        <li>If the pointers cross without mismatch, the string is a valid palindrome.</li>
+                    </ul>
+                    <pre>def isPalindrome(s: str) -> bool:
+    left, right = 0, len(s) - 1
+
+    while left < right:
+        if not s[left].isalnum():
+            left += 1
+        elif not s[right].isalnum():
+            right -= 1
+        elif s[left].lower() != s[right].lower():
+            return False
+        else:
+            left += 1
+            right -= 1
+
+    return True</pre>
+                    <strong>Complexity:</strong> O(n) time, O(1) space.
+                </details>
+                
+                <h3>Pattern 2: Sliding Window</h3>
+                <div class="card">
+                    <strong>Idea:</strong> Dynamic window expands/contracts to find optimal subarray/substring in O(n).<br>
+                    <strong>Problems:</strong> Longest Substring Without Repeating Characters, Minimum Window Substring<br>
+                    <strong>Key:</strong> Use HashMap to track state; each element added/removed at most once.<br>
+                    <strong>Status:</strong> <span class="pattern-badge">🟡 Yellow (2/3 solved)</span>
+                </div>
+
+                <details open>
+                    <summary>Day 2 Theory: Sliding Window + Longest Substring Without Repeating Characters</summary>
+                    <div class="note-grid">
+                        <div class="mini-card">
+                            <strong>Core idea</strong><br>
+                            Maintain a valid range <code>[left, right]</code>. Expand using <code>right</code>; if the window becomes invalid, shrink using <code>left</code>.
+                        </div>
+                        <div class="mini-card">
+                            <strong>When to use</strong><br>
+                            Longest/shortest subarray or substring problems where the answer is a contiguous block.
+                        </div>
+                        <div class="mini-card">
+                            <strong>Window invariant</strong><br>
+                            For this problem: the current window must contain no duplicate characters.
+                        </div>
+                    </div>
+                    <strong>Reasoning:</strong>
+                    <ul>
+                        <li>Add <code>s[right]</code> to the frequency map.</li>
+                        <li>If <code>s[right]</code> now appears more than once, the window is invalid.</li>
+                        <li>Move <code>left</code> forward until the duplicate is removed.</li>
+                        <li>Update <code>max_len</code> only after the window is valid again.</li>
+                    </ul>
+                    <pre>class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        left = 0
+        max_len = 0
+        freq = {}
+
+        for right in range(len(s)):
+            freq[s[right]] = freq.get(s[right], 0) + 1
+
+            while freq[s[right]] > 1:
+                freq[s[left]] -= 1
+                left += 1
+
+            max_len = max(max_len, right - left + 1)
+
+        return max_len</pre>
+                    <strong>Common bug:</strong> When shrinking, decrement <code>freq[s[left]]</code>, not <code>freq[s[right]]</code>. The left character is the one leaving the window.
+                    <br><strong>Complexity:</strong> O(n) time, O(k) space, where k is the number of distinct characters.
+                </details>
+                
+                <h3>Pattern 3: Binary Search</h3>
+                <div class="card">
+                    <strong>Idea:</strong> O(log n) by cutting search space in half repeatedly.<br>
+                    <strong>Problems:</strong> Search Rotated Sorted Array, Find First/Last Position, Capacity To Ship<br>
+                    <strong>Key:</strong> Identify search space & boundaries carefully. Can search on answers, not just values.<br>
+                    <strong>Status:</strong> <span class="pattern-badge">🔴 Red (Not started)</span>
+                </div>
+                
+                <h3>Pattern 4: Trees & BST</h3>
+                <div class="card">
+                    <strong>Idea:</strong> Traverse/manipulate binary trees using DFS (pre/in/post-order) or BFS (level-order).<br>
+                    <strong>Problems:</strong> Lowest Common Ancestor, Max Path Sum, Validate BST, Serialize/Deserialize<br>
+                    <strong>Key:</strong> Master all traversal orders. Know which to use for each problem type.<br>
+                    <strong>Status:</strong> <span class="pattern-badge">🔴 Red (Not started)</span>
+                </div>
+                
+                <h3>Pattern 5: Graphs (BFS/DFS)</h3>
+                <div class="card">
+                    <strong>Idea:</strong> Traverse graphs for connectivity (DFS) or shortest paths (BFS). O(V + E).<br>
+                    <strong>Problems:</strong> Number of Islands, Clone Graph, Course Schedule, Topological Sort<br>
+                    <strong>Key:</strong> BFS for shortest path (queue). DFS for connectivity/cycles (stack/recursion).<br>
+                    <strong>Status:</strong> <span class="pattern-badge">🔴 Red (Not started)</span>
+                </div>
+                
+                <h3>Pattern 6: Dynamic Programming</h3>
+                <div class="card">
+                    <strong>Idea:</strong> Break into overlapping subproblems; memoize to avoid recalculation.<br>
+                    <strong>Problems:</strong> House Robber, LCS, Edit Distance, Knapsack, Coin Change<br>
+                    <strong>Key:</strong> Identify state transitions. Start recursive + memoization, optimize to DP table.<br>
+                    <strong>Status:</strong> <span class="pattern-badge">🔴 Red (Not started)</span>
+                </div>
+                
+                <h3>Problems Solved</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Problem</th>
+                            <th>Pattern</th>
+                            <th>Difficulty</th>
+                            <th>Hints</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2026-08-30</td>
+                            <td><a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/DSA/two-pointer/valid-palindrome.py" target="_blank">Valid Palindrome</a></td>
+                            <td><span class="pattern-badge">Two-Pointer</span></td>
+                            <td><span class="difficulty-easy">Easy</span></td>
+                            <td>3</td>
+                            <td>✅ Solved</td>
+                        </tr>
+                        <tr>
+                            <td>2026-08-31</td>
+                            <td><a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/DSA/sliding-window/longest-substring-without-repeating-characters.py" target="_blank">Longest Substring Without Repeating Characters</a></td>
+                            <td><span class="pattern-badge">Sliding Window</span></td>
+                            <td>Medium</td>
+                            <td>1</td>
+                            <td>✅ Solved</td>
+                        </tr>
+                        <tr>
+                            <td>2026-09-01</td>
+                            <td><a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/DSA/sliding-window/permutation-in-string.py" target="_blank">Permutation in String</a></td>
+                            <td><span class="pattern-badge">Sliding Window</span></td>
+                            <td>Medium</td>
+                            <td>1</td>
+                            <td>✅ Solved</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p class="timestamp">Updated after each DSA problem | Target: 1-2 problems/day during phase 1</p>
+            </section>
+            
+            <!-- LLD SECTION -->
+            <section id="lld">
+                <h2>🏗️ LLD (Low-Level Design)</h2>
+                
+                <div class="highlight">
+                    <strong>Why LLD is the differentiator:</strong> LLD separates ₹45L–₹65L candidates. Goldman, Salesforce, ServiceNow all test LLD heavily. Master SOLID principles, apply them in 8+ classic problems (Parking Lot, Rate Limiter, Cache, Logger, etc.), and you'll dominate this round.
+                </div>
+
+                <div class="card">
+                    <strong>Repo files:</strong><br>
+                    <a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/SOLID-Principles-Notes.md" target="_blank">SOLID Principles notes</a><br>
+                    <a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/LLD/rate-limiter/algorithm-choice.md" target="_blank">Rate Limiter algorithm choice</a>
+                </div>
+                
+                <h3>SOLID Principles (The Foundation)</h3>
+                
+                <h4>1. Single Responsibility (SRP)</h4>
+                <details open>
+                    <summary>SRP: One Class, One Reason To Change</summary>
+                    <p><strong>Meaning:</strong> A class should own one responsibility. If validation, database writes, email sending, and logging all live in one class, one change can break unrelated behavior.</p>
+                    <p><strong>Bad shape:</strong> <code>UserService</code> validates input, hashes password, inserts into DB, sends email, and logs events.</p>
+                    <p><strong>Good shape:</strong> Split into <code>UserValidator</code>, <code>PasswordHasher</code>, <code>UserRepository</code>, <code>EmailService</code>, and <code>AuditLogger</code>.</p>
+                    <pre>class UserService:
+    def __init__(self, validator, hasher, repo, email_service):
+        self.validator = validator
+        self.hasher = hasher
+        self.repo = repo
+        self.email_service = email_service
+
+    def register(self, email, password):
+        if not self.validator.is_valid(email, password):
+            return False
+        password_hash = self.hasher.hash(password)
+        self.repo.save(email, password_hash)
+        self.email_service.send_welcome(email)
+        return True</pre>
+                    <p><strong>Interview line:</strong> "I separated responsibilities so validation, persistence, and notification can change independently and be unit tested separately."</p>
+                </details>
+                
+                <h4>2. Open/Closed (OCP)</h4>
+                <details>
+                    <summary>OCP: Add New Behavior Without Modifying Stable Code</summary>
+                    <p><strong>Meaning:</strong> Existing tested code should stay stable when new variants are added. Add classes, don't keep adding <code>if/elif</code> branches.</p>
+                    <p><strong>Bad shape:</strong> <code>Cache.evict()</code> has <code>if policy == "LRU"</code>, <code>elif policy == "LFU"</code>, <code>elif policy == "FIFO"</code>.</p>
+                    <p><strong>Good shape:</strong> Use a strategy interface.</p>
+                    <pre>class EvictionPolicy:
+    def evict(self, cache):
+        raise NotImplementedError
+
+class LRUEviction(EvictionPolicy):
+    def evict(self, cache):
+        pass
+
+class LFUEviction(EvictionPolicy):
+    def evict(self, cache):
+        pass
+
+class Cache:
+    def __init__(self, capacity, eviction_policy):
+        self.capacity = capacity
+        self.eviction_policy = eviction_policy</pre>
+                    <p><strong>Interview line:</strong> "Adding LFU or FIFO should not require modifying the cache core; I would inject the eviction strategy."</p>
+                </details>
+                
+                <h4>3. Liskov Substitution (LSP)</h4>
+                <details>
+                    <summary>LSP: Subtypes Must Not Break Parent Contracts</summary>
+                    <p><strong>Meaning:</strong> If code expects a parent type, every child type must behave safely under the same contract.</p>
+                    <p><strong>Bad shape:</strong> <code>Penguin extends Bird</code> but throws in <code>fly()</code>. Or <code>ReadOnlyRepository</code> implements <code>save()</code> but throws.</p>
+                    <p><strong>Good shape:</strong> Model behavior honestly. Use <code>Movable</code>, <code>Flyable</code>, <code>ReadableRepository</code>, <code>WritableRepository</code>.</p>
+                    <pre>class Logger:
+    def write(self, message):
+        raise NotImplementedError
+
+class FileLogger(Logger):
+    def write(self, message):
+        pass
+
+class ConsoleLogger(Logger):
+    def write(self, message):
+        pass</pre>
+                    <p><strong>Interview line:</strong> "Any implementation of the interface should be usable without the caller needing special-case checks."</p>
+                </details>
+                
+                <h4>4. Interface Segregation (ISP)</h4>
+                <details>
+                    <summary>ISP: Prefer Small Focused Interfaces</summary>
+                    <p><strong>Meaning:</strong> Don't create one huge interface that forces every class to implement unused methods.</p>
+                    <p><strong>Bad shape:</strong> One <code>DataStore</code> interface with <code>read</code>, <code>write</code>, <code>delete</code>, <code>scan</code>, <code>backup</code>, <code>restore</code>. A read-only cache is forced to fake unsupported operations.</p>
+                    <p><strong>Good shape:</strong> Split by capability.</p>
+                    <pre>class Reader:
+    def read(self, key):
+        raise NotImplementedError
+
+class Writer:
+    def write(self, key, value):
+        raise NotImplementedError
+
+class ReadOnlyCache(Reader):
+    def read(self, key):
+        pass</pre>
+                    <p><strong>Interview line:</strong> "I would expose only the capabilities each client needs, which keeps contracts smaller and implementations honest."</p>
+                </details>
+                
+                <h4>5. Dependency Inversion (DIP)</h4>
+                <details>
+                    <summary>DIP: Depend On Abstractions, Not Concrete Classes</summary>
+                    <p><strong>Meaning:</strong> High-level business logic should not create or depend directly on low-level infrastructure like MySQL, Redis, SMTP, or Kafka clients.</p>
+                    <p><strong>Bad shape:</strong> <code>UserService</code> directly creates <code>MySQLDatabase()</code>. Tests need MySQL, and switching DB requires code changes.</p>
+                    <p><strong>Good shape:</strong> Inject an abstraction.</p>
+                    <pre>class UserRepository:
+    def save(self, user):
+        raise NotImplementedError
+
+class SqlUserRepository(UserRepository):
+    def save(self, user):
+        pass
+
+class UserService:
+    def __init__(self, repo: UserRepository):
+        self.repo = repo</pre>
+                    <p><strong>Interview line:</strong> "I depend on a repository abstraction so I can test with mocks and swap SQL/NoSQL implementations without touching business logic."</p>
+                </details>
+
+                <h3>Today's LLD Theory: Rate Limiter</h3>
+                <details open>
+                    <summary>Rate Limiter Basics: What Problem Are We Solving?</summary>
+                    <p>A rate limiter controls how many requests a user, IP, API key, or tenant can make in a time interval. Example: <code>100 requests/minute/user</code>.</p>
+                    <ul>
+                        <li><strong>Input:</strong> user ID / API key / IP + timestamp.</li>
+                        <li><strong>Decision:</strong> allow request or reject with HTTP <code>429 Too Many Requests</code>.</li>
+                        <li><strong>State:</strong> request counters, timestamps, or token count per user.</li>
+                        <li><strong>Hard part:</strong> doing this fast and correctly under high traffic and distributed servers.</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Fixed Window Counter</summary>
+                    <p><strong>Idea:</strong> Count requests in a fixed time bucket, like 10:00:00 to 10:00:59. Reset when the next minute starts.</p>
+                    <pre>key = user_id + current_minute
+count = redis.incr(key)
+if count == 1:
+    redis.expire(key, 60)
+return count <= 100</pre>
+                    <p><strong>Pros:</strong> Very simple, memory efficient, fast in Redis.</p>
+                    <p><strong>Cons:</strong> Boundary burst problem. A user can send 100 requests at 10:00:59 and 100 more at 10:01:00, effectively 200 requests in 2 seconds.</p>
+                    <p><strong>Use when:</strong> Limits do not need high precision.</p>
+                </details>
+
+                <details>
+                    <summary>Sliding Window Log</summary>
+                    <p><strong>Idea:</strong> Store timestamps of each request. For every request, remove timestamps older than 60 seconds and count the remaining requests.</p>
+                    <pre>timestamps = requests[user_id]
+remove all timestamps older than now - 60 seconds
+if len(timestamps) < 100:
+    timestamps.append(now)
+    allow
+else:
+    reject</pre>
+                    <p><strong>Pros:</strong> Very accurate. No boundary burst issue.</p>
+                    <p><strong>Cons:</strong> Memory-heavy because every request timestamp is stored. Expensive for high traffic.</p>
+                    <p><strong>Use when:</strong> Accuracy matters more than memory, usually for low to medium scale.</p>
+                </details>
+
+                <details>
+                    <summary>Token Bucket</summary>
+                    <p><strong>Idea:</strong> Each user has a bucket with tokens. Requests consume tokens. Tokens refill at a fixed rate. If tokens are available, allow. If not, reject.</p>
+                    <pre>tokens = min(capacity, tokens + elapsed_time * refill_rate)
+if tokens >= 1:
+    tokens -= 1
+    allow
+else:
+    reject</pre>
+                    <p><strong>Pros:</strong> Allows controlled bursts while enforcing average rate. Memory efficient: only store token count and last refill time per user.</p>
+                    <p><strong>Cons:</strong> Slightly less exact than sliding log. Requires careful timestamp/refill calculation.</p>
+                    <p><strong>Use when:</strong> Backend/API systems where controlled burst behavior is acceptable. Strong default for interviews.</p>
+                </details>
+
+                <details>
+                    <summary>Leaky Bucket</summary>
+                    <p><strong>Idea:</strong> Requests enter a queue and are processed at a fixed rate. If the queue is full, new requests are rejected.</p>
+                    <p><strong>Pros:</strong> Smooth output rate. Good when downstream systems need predictable traffic.</p>
+                    <p><strong>Cons:</strong> Queueing adds latency. Less natural if you simply want allow/reject at the API edge.</p>
+                    <p><strong>Use when:</strong> You need to smooth traffic before sending to a downstream service.</p>
+                </details>
+
+                <details>
+                    <summary>Recommended Answer For 100 Requests/Minute/User</summary>
+                    <p><strong>Pick Token Bucket</strong> for a product/backend interview unless exact fairness is explicitly required.</p>
+                    <ul>
+                        <li>It allows small bursts, which is practical for real users and services.</li>
+                        <li>It is memory efficient: store <code>tokens</code> and <code>last_refill_time</code> per user.</li>
+                        <li>It works well with Redis for distributed rate limiting.</li>
+                    </ul>
+                    <p><strong>Tradeoff to mention:</strong> If strict accuracy is required, use Sliding Window Log or Sliding Window Counter, but memory and complexity increase.</p>
+                </details>
+                
+                <h3>Classic LLD Problems (Week 2+)</h3>
+                
+                <h4>Week 2: Parking Lot System</h4>
+                <div class="card">
+                    <strong>Concepts:</strong> Inheritance, composition, state management<br>
+                    <strong>Classes:</strong> ParkingLot, Level, ParkingSpot, Vehicle, ParkingTicket<br>
+                    <strong>Interview Value:</strong> "I modeled the domain using proper OOP, ensured each class has a single responsibility."
+                </div>
+                
+                <h4>Week 3: Rate Limiter</h4>
+                <div class="card">
+                    <strong>Concepts:</strong> Strategy pattern, sliding window, token bucket<br>
+                    <strong>Algorithms:</strong> Token Bucket, Sliding Window, Leaky Bucket, Fixed Window<br>
+                    <strong>Interview Value:</strong> "I implemented multiple algorithms using strategy pattern so they're pluggable without changing core logic."
+                </div>
+                
+                <h4>Week 4: LRU/LFU Cache</h4>
+                <div class="card">
+                    <strong>Concepts:</strong> HashMap + LinkedList, eviction policies, space/time tradeoffs<br>
+                    <strong>Trade-offs:</strong> LRU vs LFU accuracy, memory overhead<br>
+                    <strong>Interview Value:</strong> "I used OCP to make eviction policy pluggable; designed for O(1) get/put using HashMap + DoublyLinkedList."
+                </div>
+                
+                <h4>Week 5: Notification Service</h4>
+                <div class="card">
+                    <strong>Concepts:</strong> Chain of Responsibility, Factory, Observer<br>
+                    <strong>Features:</strong> Multiple channels (Email, SMS, Push), retry logic, rate limiting<br>
+                    <strong>Interview Value:</strong> "I separated concerns: builders, channels, retry strategies using factory and chain of responsibility."
+                </div>
+                
+                <h3>Design Patterns Reference</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pattern</th>
+                            <th>Use Case</th>
+                            <th>LLD Problem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Strategy</strong></td>
+                            <td>Swappable algorithms</td>
+                            <td>Rate Limiter (algorithms), Cache (eviction)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Factory</strong></td>
+                            <td>Object creation logic</td>
+                            <td>Logger types, Notifier channels</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Singleton</strong></td>
+                            <td>Single instance globally</td>
+                            <td>Database connection, Logger instance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Observer</strong></td>
+                            <td>Event listeners</td>
+                            <td>Notification system, cache updates</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chain of Responsibility</strong></td>
+                            <td>Pass request through chain</td>
+                            <td>Log level handlers, approval workflows</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Decorator</strong></td>
+                            <td>Add functionality dynamically</td>
+                            <td>Logging/caching wrappers around API calls</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p class="timestamp">Master SOLID by week 2; solve 8+ classic problems weeks 2–10 applying these principles</p>
+            </section>
+            
+            <!-- HLD SECTION -->
+            <section id="hld">
+                <h2>🌐 HLD (High-Level Design)</h2>
+                
+                <div class="highlight">
+                    <strong>This is your ₹50L–₹80L multiplier.</strong> HLD tests architectural thinking at scale: handling millions of users, consistency vs availability tradeoffs, real-world constraints. Companies like Goldman Sachs, Google, and Uber spend entire rounds on HLD. Master this → win the compensation band.
+                </div>
+
+                <div class="card">
+                    <strong>Repo files:</strong><br>
+                    <a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/HLD/README.md" target="_blank">HLD notes index</a>
+                </div>
+                
+                <h3>HLD Interview Flow</h3>
+                <div class="card">
+                    <strong>1. Clarify Requirements:</strong> Functional (create URL shortener?) + Non-functional (1M writes/sec? 99.9% uptime?)<br>
+                    <strong>2. Estimate Scale:</strong> QPS, storage, latency SLA, geographic distribution<br>
+                    <strong>3. High-Level Design:</strong> Components (API Gateway, services, databases, caches, queues)<br>
+                    <strong>4. Deep Dive:</strong> Data models, sharding strategy, caching policy, consistency model<br>
+                    <strong>5. Tradeoffs:</strong> SQL vs NoSQL, strong vs eventual consistency, replication strategy<br>
+                    <br>
+                    <strong>Interview Gold:</strong> "I started by understanding requirements and scale, then chose technologies based on tradeoffs."
+                </div>
+                
+                <h3>Core Concepts (Weeks 5–10)</h3>
+                
+                <h4>Load Balancing</h4>
+                <div class="card">
+                    <strong>Types:</strong> Round-Robin (simple), Least Connections (even distribution), IP Hash (session affinity), Consistent Hashing<br>
+                    <strong>Tools:</strong> Nginx, HAProxy, AWS ELB, Kubernetes Service<br>
+                    <strong>When to use:</strong> Multiple servers; need to distribute traffic for horizontal scaling
+                </div>
+                
+                <h4>Caching Strategies</h4>
+                <div class="card">
+                    <strong>Types:</strong> Read-Through (cache-aside), Write-Through (slow writes, consistent), Write-Behind (fast writes, risky)<br>
+                    <strong>Tools:</strong> Redis, Memcached<br>
+                    <strong>Key Tradeoff:</strong> Latency vs consistency. Read-behind → fast reads but stale data. Write-through → consistent but slower.
+                </div>
+                
+                <h4>Database Sharding</h4>
+                <div class="card">
+                    <strong>Strategies:</strong> Range-based (user_id 1–1M shard 1), Hash-based (consistent hashing), Geographic (region-based)<br>
+                    <strong>Challenges:</strong> Hot shards, re-sharding costs, cross-shard queries<br>
+                    <strong>When to use:</strong> Single database can't handle scale (storage or QPS)
+                </div>
+                
+                <h4>Message Queues</h4>
+                <div class="card">
+                    <strong>Types:</strong> Kafka (durability, streaming), RabbitMQ (flexibility), AWS SQS (managed)<br>
+                    <strong>Use Cases:</strong> Decoupling, async processing, event streaming, load leveling<br>
+                    <strong>Tradeoff:</strong> Adds latency but improves system resilience
+                </div>
+                
+                <h4>Replication & Consistency</h4>
+                <div class="card">
+                    <strong>Models:</strong> Master-Slave (one writer), Multi-Master (multiple writers), Consensus (Raft, Paxos)<br>
+                    <strong>CAP Theorem:</strong> Pick 2 of Consistency, Availability, Partition Tolerance<br>
+                    <strong>Tradeoff:</strong> Sync replication (slow, consistent) vs Async (fast, eventually consistent)
+                </div>
+                
+                <h3>Classic HLD Problems (Week 5+)</h3>
+                
+                <h4>Week 5-6: URL Shortener (TinyURL)</h4>
+                <div class="card">
+                    <strong>Scale:</strong> 1M writes/sec, 10M reads/sec<br>
+                    <strong>Components:</strong> API Gateway, ID generator (Snowflake/UUID), Sharded DB, Cache<br>
+                    <strong>Design Decisions:</strong> Use consistent hashing for ID generation; Redis for hot URL caching; SQL for persistence<br>
+                    <strong>Interview Gold:</strong> "I used Snowflake ID generator for distributed unique IDs and Redis for cache with TTL."
+                </div>
+                
+                <h4>Week 6-7: Distributed Logger</h4>
+                <div class="card">
+                    <strong>Scale:</strong> 100s of MB/sec ingestion, queryability across weeks<br>
+                    <strong>Components:</strong> Log collectors, Kafka (durability), Stream processors (Storm/Spark), Storage (Cassandra/S3)<br>
+                    <strong>Design Decisions:</strong> Kafka for high throughput; Cassandra for time-series storage; Elasticsearch for searching<br>
+                    <strong>Interview Gold:</strong> "I used Kafka for durability, parallel processing for fault tolerance, and time-series DB for efficient queries."
+                </div>
+                
+                <h4>Week 7-8: Real-Time Chat System</h4>
+                <div class="card">
+                    <strong>Scale:</strong> 1M concurrent users, 10K msgs/sec per room<br>
+                    <strong>Components:</strong> WebSocket servers, Message queue (Kafka), Distributed cache (Redis), DB<br>
+                    <strong>Design Decisions:</strong> WebSockets for real-time; Redis for message ordering; DB for persistence<br>
+                    <strong>Interview Gold:</strong> "I used WebSockets for bi-directional communication, Redis for state management, and eventual consistency for scalability."
+                </div>
+                
+                <h4>Week 8-9: Distributed Search (Google Scale)</h4>
+                <div class="card">
+                    <strong>Scale:</strong> 100M+ documents, sub-100ms query latency<br>
+                    <strong>Components:</strong> Web crawler, Indexer, Inverted index (Elasticsearch), Query engine, Ranking<br>
+                    <strong>Design Decisions:</strong> Distributed crawling; parallel indexing; sharded search clusters<br>
+                    <strong>Interview Gold:</strong> "I separated crawling, indexing, and searching to parallelize and scale independently."
+                </div>
+                
+                <h3>Key Tradeoffs (Interview Checklist)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tradeoff</th>
+                            <th>Option A</th>
+                            <th>Option B</th>
+                            <th>When to Choose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Consistency</strong></td>
+                            <td>Strong (sync replication)</td>
+                            <td>Eventual (async)</td>
+                            <td>Financial → strong; Social → eventual</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SQL vs NoSQL</strong></td>
+                            <td>SQL (structured, ACID)</td>
+                            <td>NoSQL (flexible, scale)</td>
+                            <td>Relational data → SQL; massive scale → NoSQL</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cache Invalidation</strong></td>
+                            <td>TTL (simple)</td>
+                            <td>Event-driven (accurate)</td>
+                            <td>High freshness critical → event-driven</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Processing</strong></td>
+                            <td>Real-time (low latency)</td>
+                            <td>Batch (cost-effective)</td>
+                            <td>Time-sensitive (fraud) → real-time; reporting → batch</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p class="timestamp">Master HLD weeks 5+; full mocks weeks 15+ (60% HLD, 30% DSA, 10% behavioral)</p>
+            </section>
+        </div>
+        
+        <div class="footer">
+            <p>🚀 Coding Mentor Dashboard — 4-5 months to ₹50L–₹80L</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Strategy: Gate (DSA 1–5) → Differentiate (LLD 2–10) → Leverage (HLD 5–18) → Mock Interviews (15–20)</p>
+        </div>
+    </div>
+</body>
+</html>

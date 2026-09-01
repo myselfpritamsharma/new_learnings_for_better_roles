@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Study Report: SEBI IT + PBC 65-70 LPA Dual-Track Roadmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .critical-alert {
+            background: #d32f2f;
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 6px solid #b71c1c;
+            border-radius: 5px;
+            font-size: 1.05em;
+            font-weight: 600;
+        }
+
+        .critical-alert strong {
+            color: #ffeb3b;
+            font-size: 1.1em;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            border-bottom: 2px solid #667eea;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #764ba2;
+        }
+
+        main {
+            padding: 40px 30px;
+        }
+
+        section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .priority-box {
+            background: #fff5e6;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin: 15px 0;
+        }
+
+        .timeline {
+            background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+            height: 4px;
+            margin: 30px 0;
+            border-radius: 2px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h4 {
+            margin-top: 0;
+        }
+
+        .card ul {
+            margin-left: 20px;
+            list-style-type: disc;
+        }
+
+        .card li {
+            margin: 8px 0;
+        }
+
+        .highlight {
+            background: #fff9c4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .phase-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+
+        .phase-1 {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .phase-2 {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .phase-3 {
+            background: #f3e5f5;
+            color: #6a1b9a;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 10px 5px 10px 0;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95em;
+        }
+
+        .button:hover {
+            background: #764ba2;
+        }
+
+        .button-secondary {
+            background: #f0f0f0;
+            color: #667eea;
+        }
+
+        .button-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin: 15px 0;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .accordion {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .accordion-header {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background: #764ba2;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 20px;
+            background: white;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+            font-size: 1.2em;
+        }
+
+        .accordion-header.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        footer {
+            background: #f8f9fa;
+            border-top: 2px solid #667eea;
+            padding: 20px 30px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            main {
+                padding: 20px;
+            }
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .print-only {
+            display: none;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .print-only {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Master Study Report</h1>
+            <p>SEBI Grade A IT + Tier-1 PBC 65–70 LPA Dual-Track Roadmap</p>
+            <p style="font-size: 0.95em; margin-top: 10px;">Phase 1: 17-Week Foundation | 60% SEBI + 40% PBC | Starting Aug 28, 2026</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#goals">Goals & Strategy</a></li>
+                <li><a href="#sebi-monitoring">SEBI Monitoring</a></li>
+                <li><a href="#phase1-syllabus">Phase I Syllabus</a></li>
+                <li><a href="#phases">Phases</a></li>
+                <li><a href="#syllabus">Syllabus</a></li>
+                <li><a href="#timeline">Timeline</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#lpa">LPA Strategy</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- CRITICAL ALERT -->
+            <section style="background: #ffebee; border: 3px solid #d32f2f; padding: 30px; margin: 20px; border-radius: 8px;">
+                <div class="critical-alert" style="margin: 0; background: #d32f2f;">
+                    ⚠️ <strong>CRITICAL DEADLINE: SEBI Age Cap Expires MAY 2027</strong><br>
+                    You turn 30 in May 2027. SEBI exam age limit is <strong>ABSOLUTE</strong>, but SEBI IT recruitment is <strong>IRREGULAR</strong>. The Apr–May 2027 window is possible, not guaranteed.
+                </div>
+                <div style="padding: 20px; background: #fff3e0; border-left: 4px solid #ff9800; margin-top: 15px; border-radius: 5px;">
+                    <p><strong>⏰ Possible Age-Eligible Window: April–May 2027</strong></p>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li><strong>Aug–Dec Strategy:</strong> 60% SEBI + 40% PBC; build both foundations seriously</li>
+                        <li><strong>Until Dec 31:</strong> Continue both tracks while monitoring official SEBI notifications</li>
+                        <li><strong>Decision Point:</strong> January 1, 2027 — use official notification status to choose the next allocation</li>
+                        <li><strong>If announced:</strong> 70–90% SEBI final preparation, with limited PBC continuity</li>
+                        <li><strong>If not announced:</strong> 70% PBC interview preparation; SEBI moves to maintenance</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>👉 Detailed plans:</strong> <a href="04-CRITICAL-Age-Cap-Timeline.md" style="color: #d32f2f; font-weight: 600;">age-cap timeline</a> and <a href="05-Pragmatic-Parallel-Track.md" style="color: #d32f2f; font-weight: 600;">parallel-track decision tree</a></p>
+                </div>
+            </section>
+            <!-- OVERVIEW SECTION -->
+            <section id="overview">
+                <h2>📋 Executive Overview</h2>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="number">500</div>
+                        <div class="label">Total Study Hours</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">17</div>
+                        <div class="label">Weeks Duration</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">170+</div>
+                        <div class="label">DSA Problems</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">19</div>
+                        <div class="label">System Designs</div>
+                    </div>
+                </div>
+
+                <h3>Your Profile</h3>
+                <div class="info-box">
+                    <strong>Current Position:</strong> Senior Full-Stack Developer (~6 years experience)<br>
+                    <strong>Tech Stack:</strong> .NET Core, Angular, Node.js, SQL Server<br>
+                    <strong>Primary Goal:</strong> SEBI Grade A IT exam (30-year age cap) + High-earning SDE roles<br>
+                    <strong>Target Compensation:</strong> ₹65–70 LPA (Tier-1 PBC SDE-2/3 roles)<br>
+                    <strong>Phase 1 Timeline:</strong> Aug 28 - Dec 31, 2026 (17 weeks)<br>
+                    <strong>Decision Checkpoint:</strong> January 1, 2027
+                </div>
+
+                <h3>Dual-Track Strategy</h3>
+                <p>This roadmap is designed to serve <span class="highlight">BOTH</span> goals simultaneously:</p>
+                <ul>
+                    <li><strong>SEBI Grade A IT:</strong> Comprehensive CS fundamentals (breadth) + mathematical rigor (depth)</li>
+                    <li><strong>Tier-1 PBC 65–70 LPA:</strong> Advanced system design + senior engineering mindset + behavioral readiness</li>
+                </ul>
+
+                <p style="margin-top: 20px;"><strong>Key Innovation:</strong> 120 hours of overlap means you study core topics once but gain benefits for both tracks simultaneously.</p>
+
+                <div class="priority-box">
+                    <strong>SEBI Phase 1 is included from Week 1:</strong>
+                    General Awareness/current affairs, English, Quantitative Aptitude, Reasoning, IT technical topics, and timed sectional practice all run alongside the shared CS foundation. These areas cannot be postponed until a notification appears.
+                </div>
+            </section>
+
+            <section id="sebi-monitoring">
+                <h2>📅 SEBI Notification Monitoring</h2>
+                <div class="info-box">
+                    <p><strong>Official source:</strong> <a href="https://www.sebi.gov.in/sebiweb/other/careers.jsp">SEBI Careers</a></p>
+                    <p style="margin-top: 10px;"><strong>Verified pattern:</strong> The official 2025 notice was dated October 30, 2025 and listed Phase I on January 10, 2026. The official 2024 recruitment cycle recorded Phase I on July 27, 2024. The dates vary, so no 2027 date should be treated as confirmed until SEBI publishes it.</p>
+                </div>
+                <table>
+                    <thead><tr><th>When</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Every Sunday</strong></td><td>Check the official careers page and log the result.</td></tr>
+                        <tr><td><strong>First day monthly</strong></td><td>Search for Officer Grade A, IT Stream, recruitment, corrigendum, Phase I, and Phase II.</td></tr>
+                        <tr><td><strong>January 1, 2027</strong></td><td>Apply the SEBI/PBC allocation fork using official information only.</td></tr>
+                        <tr><td><strong>After notification</strong></td><td>Capture application dates, age cut-off, vacancies, Phase I/II dates, fee, and IT eligibility.</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="phase1-syllabus">
+                <h2>📝 SEBI Phase I Detailed Syllabus</h2>
+                <div class="warning-box">
+                    <strong>Notification rule:</strong> Verify exact marks, timings, cut-offs, negative marking, and 2027 dates from the next official SEBI notification. This is the preparation map, not a promise of an exam date.
+                </div>
+
+                <h3>Paper I: Common Aptitude and Awareness</h3>
+                <table>
+                    <thead><tr><th>Area</th><th>Exam-oriented chapters</th><th>Study style</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Quantitative Aptitude</strong></td><td>Percentages, ratio, averages, profit/loss, interest, time/work, speed/distance, mixtures, number system, DI, simplification</td><td>Formula sheet, timed sets, calculation-error log</td></tr>
+                        <tr><td><strong>Reasoning</strong></td><td>Inequalities, syllogisms, coding, blood relations, directions, series, ranking, arrangements, floor/scheduling puzzles, data sufficiency</td><td>Standard setups, sectional timer, elimination</td></tr>
+                        <tr><td><strong>English</strong></td><td>Reading comprehension, cloze, error spotting, sentence improvement, fillers, para-jumbles, vocabulary, grammar</td><td>Daily reading, timed comprehension, error notebook</td></tr>
+                        <tr><td><strong>General Awareness</strong></td><td>Current affairs, financial markets, banking, monetary policy, securities market, SEBI, economy, budget, static awareness</td><td>Dated monthly capsule and Sunday active recall</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>Paper II: Information Technology</h3>
+                <table>
+                    <thead><tr><th>Order</th><th>Chapter</th><th>High-yield coverage</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td><strong>Database and SQL</strong></td><td>Relational model, algebra, tuple calculus, constraints, normalization, transactions, concurrency, recovery, indexing, query processing, SQL</td></tr>
+                        <tr><td>2</td><td><strong>Programming, Data Structures, Algorithms</strong></td><td>C/C++/Java, OOP, complexity, arrays, strings, linked lists, stacks, queues, trees, heaps, graphs, sorting, searching, DP, greedy, backtracking</td></tr>
+                        <tr><td>3</td><td><strong>Computer Networks</strong></td><td>OSI/TCP-IP, Ethernet, ARP, IP/subnetting, routing, TCP/UDP, congestion, DNS, HTTP/HTTPS, TLS</td></tr>
+                        <tr><td>4</td><td><strong>Operating Systems</strong></td><td>Processes, threads, scheduling, synchronization, deadlocks, memory, virtual memory, files, I/O, protection</td></tr>
+                        <tr><td>5</td><td><strong>Software Engineering</strong></td><td>SDLC, Agile, requirements, UML, estimation, testing, version control, architecture, maintenance</td></tr>
+                        <tr><td>6</td><td><strong>Web Technologies</strong></td><td>HTML/CSS/JavaScript, browser/HTTP behavior, REST, APIs, sessions, cookies, authentication, authorization</td></tr>
+                        <tr><td>7</td><td><strong>Cybersecurity</strong></td><td>CIA, threat modeling, access control, cryptography, hashing, PKI, secure coding, OWASP, malware, firewalls, IDS/IPS</td></tr>
+                        <tr><td>8</td><td><strong>Data Analytics and Emerging IT</strong></td><td>Data preparation, descriptive statistics, basic ML, big data, cloud, virtualization, distributed systems</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="success-box">
+                    <strong>Per-chapter completion standard:</strong> One-page recall sheet, 20–30 MCQs, written explanation of every error, and revisions after 1, 7, and 21 days. Use a 40% learning / 40% timed practice / 20% review split.
+                </div>
+            </section>
+
+            <!-- GOALS & STRATEGY SECTION -->
+            <section id="goals">
+                <h2>🎯 Goals & Strategy</h2>
+
+                <h3>Understanding the Dual Goal</h3>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>SEBI Grade A IT Exam</h4>
+                        <ul>
+                            <li>Breadth: Comprehensive CS coverage</li>
+                            <li>Depth: Theory-heavy, mathematical rigor</li>
+                            <li>Question Type: MCQs (1-mark, 2-mark)</li>
+                            <li>Focus: Normalization, concurrency, scheduling, networks</li>
+                            <li>Cutoff: 60–70% to clear</li>
+                            <li>Hard Deadline: 30-year age limit</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Tier-1 PBC SDE-2/3 (65–70 LPA)</h4>
+                        <ul>
+                            <li>System Design (40%): Distributed systems, scalability</li>
+                            <li>Advanced DSA (30%): Hard optimization problems</li>
+                            <li>Depth (10%): Deep expertise in 1–2 domains</li>
+                            <li>Behavioral (15%): Leadership, mentorship readiness</li>
+                            <li>Core CS (5%): Spot-checks on OS/Networks/DBMS</li>
+                            <li>Flexible Timeline: Continuous opportunities</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Priority Matrix: SEBI vs PBC</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>SEBI Importance</th>
+                            <th>PBC Importance</th>
+                            <th>Study Strategy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>DSA (All types)</strong></td>
+                            <td>★★★★</td>
+                            <td>★★★★</td>
+                            <td>Deep + Optimization (Common)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DBMS Normalization</strong></td>
+                            <td>★★★★</td>
+                            <td>★</td>
+                            <td>Theory-deep (SEBI focus)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DBMS SQL & Indexing</strong></td>
+                            <td>★★★</td>
+                            <td>★★★</td>
+                            <td>Comprehensive (Common)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OS Scheduling & Memory</strong></td>
+                            <td>★★★★</td>
+                            <td>★</td>
+                            <td>Theory-deep (SEBI focus)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Networks TCP/IP</strong></td>
+                            <td>★★★★</td>
+                            <td>★★</td>
+                            <td>Theory + Practice (Common)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>System Design HLD</strong></td>
+                            <td>★★</td>
+                            <td>★★★★★</td>
+                            <td>Practice-heavy (PBC focus)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LLD & Design Patterns</strong></td>
+                            <td>★★</td>
+                            <td>★★★★</td>
+                            <td>Implementation (PBC focus)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Behavioral & LPA Strategy</strong></td>
+                            <td>★</td>
+                            <td>★★★★★</td>
+                            <td>PBC-exclusive</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- PHASES SECTION -->
+            <section id="phases">
+                <h2>⏱️ The Three Study Phases</h2>
+
+                <div class="timeline"></div>
+
+                <h3><span class="phase-badge phase-1">PHASE 1</span> Foundational Structures (Weeks 1–4)</h3>
+                <div class="info-box">
+                    <strong>Duration:</strong> Aug 28 - Sep 28, 2026<br>
+                    <strong>Study Hours:</strong> ~100 hours<br>
+                    <strong>Goal:</strong> Master shared prerequisites while starting the complete SEBI Phase I syllabus and PBC interview foundation<br>
+                    <strong>Completion Target:</strong> 100% (non-negotiable)
+                </div>
+
+                <h4>Topics Covered:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Topic</th>
+                            <th>Key Concepts</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td>Arrays & Strings</td>
+                            <td>2-Pointer, Sliding Window, Prefix Sums, Kadane's</td>
+                            <td>20 LeetCode problems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td>Linked Lists</td>
+                            <td>Cycle Detection, Reversal, Merge Sorted Lists</td>
+                            <td>14 LeetCode problems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>Stacks & Queues</td>
+                            <td>Monotonic Stack, Expression Parsing, Circular Queue</td>
+                            <td>14 LeetCode problems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4</strong></td>
+                            <td>DBMS Normalization</td>
+                            <td>ER Diagrams, Functional Dependencies, 1NF-BCNF</td>
+                            <td>Conceptual mastery + 3 design problems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SEBI Paper I</strong></td>
+                            <td>Quant, Reasoning, English, General Awareness</td>
+                            <td>Percentages, ratio, averages, puzzles, comprehension, grammar, current affairs, financial markets</td>
+                            <td>2 Quant sets, 2 Reasoning sets, 2 English drills, 4 current-affairs blocks</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SEBI Paper II</strong></td>
+                            <td>IT chapter orientation</td>
+                            <td>Database/SQL, programming/DSA, algorithms, networks, OS, software engineering, web, cybersecurity</td>
+                            <td>Technical chapter map + weekly MCQ/revision block</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="success-box">
+                    <strong>✓ Phase 1 Success Metrics:</strong>
+                    <ul>
+                        <li>48 DSA problems solved (all mediums)</li>
+                        <li>Solve mediums in <20 minutes</li>
+                        <li>Normalize a schema to BCNF without errors</li>
+                        <li>Trace Floyd's cycle detection algorithm by hand</li>
+                        <li>Complete Quant, Reasoning, English, and current-affairs starter blocks</li>
+                        <li>Create the first PBC HLD artifact and one behavioral story</li>
+                    </ul>
+                </div>
+
+                <div class="timeline"></div>
+
+                <h3><span class="phase-badge phase-2">PHASE 2</span> Core Data Structures & Systems Theory (Weeks 5–9)</h3>
+                <div class="info-box">
+                    <strong>Duration:</strong> Sep 29 - Oct 27, 2026<br>
+                    <strong>Study Hours:</strong> ~140 hours<br>
+                    <strong>Goal:</strong> Build intermediate technical depth while maintaining SEBI Paper I practice and starting PBC design work<br>
+                    <strong>Completion Target:</strong> 95%+ (1 week buffer for weak areas)
+                </div>
+
+                <h4>Topics Covered:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Topic</th>
+                            <th>Study Hours</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>5</strong></td>
+                            <td>Trees & BST</td>
+                            <td>24 hours</td>
+                            <td>22 problems + code BST delete</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6</strong></td>
+                            <td>Heaps & Priority Queues</td>
+                            <td>19 hours</td>
+                            <td>10 problems + heap implementation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7</strong></td>
+                            <td>OS: Process Management & Scheduling</td>
+                            <td>15 hours</td>
+                            <td>18 GATE PYQs, 90%+ accuracy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>8</strong></td>
+                            <td>Networks: TCP/IP Fundamentals</td>
+                            <td>21 hours</td>
+                            <td>18 PYQs + protocol flow understanding</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9</strong></td>
+                            <td>DBMS: Transactions & Concurrency</td>
+                            <td>24 hours</td>
+                            <td>15 PYQs + trace execution step-by-step</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SEBI + PBC</strong></td>
+                            <td>Recurring parallel blocks</td>
+                            <td>Paper I drills + PBC LLD/design-pattern artifact</td>
+                            <td>2 Quant, 2 Reasoning, 2 English, 4 current-affairs blocks weekly</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="success-box">
+                    <strong>✓ Phase 2 Success Metrics:</strong>
+                    <ul>
+                        <li>80 DSA problems solved (Phase 1 + Phase 2 combined)</li>
+                        <li>51 GATE/ISRO PYQs solved with 90%+ accuracy</li>
+                        <li>Code BST delete operation from scratch</li>
+                        <li>Trace 2-phase locking protocol step-by-step</li>
+                        <li>Complete 2 Quant, 2 Reasoning, 2 English, and 4 current-affairs blocks each week</li>
+                        <li>Complete one PBC LLD/design-pattern artifact per week</li>
+                    </ul>
+                </div>
+
+                <div class="timeline"></div>
+
+                <h3><span class="phase-badge phase-3">PHASE 3</span> Advanced Structures & System Design (Weeks 10–17)</h3>
+                <div class="info-box">
+                    <strong>Duration:</strong> Oct 28 - Dec 31, 2026<br>
+                    <strong>Study Hours:</strong> ~260 hours (including track-specific prep)<br>
+                    <strong>Goal:</strong> Finish advanced technical syllabus, strengthen SEBI exam speed, and produce PBC interview evidence<br>
+                    <strong>Completion Target:</strong> 100% (interview/exam readiness)
+                </div>
+
+                <h4>Common Topics (Weeks 10–14):</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Topic</th>
+                            <th>Key Concepts</th>
+                            <th>Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>10</strong></td>
+                            <td>Graphs: BFS/DFS</td>
+                            <td>Traversals, Topological Sort, Connected Components</td>
+                            <td>15 problems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>11</strong></td>
+                            <td>Shortest Paths & MST</td>
+                            <td>Dijkstra, Floyd-Warshall, Kruskal's, Prim's</td>
+                            <td>14 problems + prove correctness</td>
+                        </tr>
+                        <tr>
+                            <td><strong>12</strong></td>
+                            <td>Advanced SQL & Indexing</td>
+                            <td>Window Functions, Complex Joins, Query Optimization</td>
+                            <td>23 hard SQL problems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>13</strong></td>
+                            <td>OS: Memory & Deadlocks</td>
+                            <td>Paging, Page Replacement, Banker's Algorithm</td>
+                            <td>24 PYQs + manual execution</td>
+                        </tr>
+                        <tr>
+                            <td><strong>14</strong></td>
+                            <td>Dynamic Programming</td>
+                            <td>1D DP, 2D DP, String DP, Matrix DP, Tree DP</td>
+                            <td>23 problems, identify state <10 mins</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Parallel Foundation and Conditional Pivot (Weeks 15–17):</h4>
+                <p style="margin: 15px 0;"><strong>Do not choose a permanent track yet. Build both, then decide from the official SEBI notification status.</strong></p>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h4 style="color: #d32f2f;">SEBI Readiness Track: 60%</h4>
+                        <p><strong>Purpose:</strong> Preserve the final age-eligible opportunity if an exam is announced</p>
+                        <ul>
+                            <li><strong>Week 15:</strong> Design patterns (both)</li>
+                            <li><strong>Week 16:</strong> DBMS edge cases, OS theory, Security, Mock Test</li>
+                            <li><strong>Week 17:</strong> Review and identify weak areas</li>
+                            <li><strong>From Jan 1:</strong> Accelerate to 70–90% only if officially announced</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4 style="color: #1976d2;">PBC Readiness Track: 40%</h4>
+                        <p><strong>Purpose:</strong> Maintain a real career path while SEBI timing remains uncertain</p>
+                        <ul>
+                            <li><strong>Week 15:</strong> Design patterns (both)</li>
+                            <li><strong>Week 16:</strong> HLD systems, behavioral prep, and resume evidence</li>
+                            <li><strong>Week 17:</strong> Interview simulation and LPA strategy</li>
+                            <li><strong>From Jan 1:</strong> Move to 70% PBC and begin applications if no exam is announced</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SYLLABUS SECTION -->
+            <section id="syllabus">
+                <h2>📖 Complete Syllabus Breakdown</h2>
+
+                <h3>Data Structures & Algorithms (170+ problems total)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Concepts</th>
+                            <th>Target Quantity</th>
+                            <th>Study Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Arrays & Strings</strong></td>
+                            <td>2-Pointer, Sliding Window, Prefix Sums, Kadane's</td>
+                            <td>20 mediums</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Linked Lists</strong></td>
+                            <td>Cycle Detection, Reversal, Merging</td>
+                            <td>14 mediums</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stacks & Queues</strong></td>
+                            <td>Monotonic Stack, Expression Parsing</td>
+                            <td>14 mediums</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trees & BST</strong></td>
+                            <td>Traversals, LCA, Diameter, Max Path Sum</td>
+                            <td>22 mediums</td>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Heaps & Priority Queues</strong></td>
+                            <td>Min/Max Heap, Top-K, Median</td>
+                            <td>10 mediums</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Graphs: BFS/DFS</strong></td>
+                            <td>Traversals, Connected Components, Topological Sort</td>
+                            <td>15 mediums</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Shortest Paths & MST</strong></td>
+                            <td>Dijkstra, Bellman-Ford, Floyd-Warshall, Kruskal, Prim</td>
+                            <td>14 mediums</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Binary Search</strong></td>
+                            <td>Search Space Reduction, Rotated Arrays</td>
+                            <td>10 mediums</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recursion & Backtracking</strong></td>
+                            <td>Subsets, Permutations, N-Queens</td>
+                            <td>12 mediums</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dynamic Programming</strong></td>
+                            <td>1D DP, 2D DP, LCS, Edit Distance, Knapsack</td>
+                            <td>23 mediums</td>
+                            <td>20</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 15px;"><strong>DSA Total: 170 problems | 108 hours</strong></p>
+
+                <h3>Database Management Systems</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Key Concepts</th>
+                            <th>Target</th>
+                            <th>Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Normalization</strong></td>
+                            <td>1NF, 2NF, 3NF, BCNF, Functional Dependencies</td>
+                            <td>Conceptual + 3 design problems</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transactions & ACID</strong></td>
+                            <td>Write-Ahead Logging, Recovery</td>
+                            <td>Deep understanding</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Concurrency Control</strong></td>
+                            <td>2PL, Deadlock Detection, Isolation Levels</td>
+                            <td>15 PYQs, 90%+ accuracy</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Indexing Mechanics</strong></td>
+                            <td>B-Trees, B+ Trees, Hash Indexes</td>
+                            <td>Derive index behavior manually</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Advanced SQL</strong></td>
+                            <td>Complex Joins, Window Functions, Subqueries</td>
+                            <td>23 hard SQL problems</td>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Query Optimization</strong></td>
+                            <td>Execution Plans, Index Selection</td>
+                            <td>Optimize 10 real queries</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OLTP vs OLAP</strong></td>
+                            <td>Star Schema, Data Marts, ETL</td>
+                            <td>Design 2 data warehouses</td>
+                            <td>8</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 15px;"><strong>DBMS Total: 58 problems + deep theory | 78 hours</strong></p>
+
+                <h3>Operating Systems</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Key Concepts</th>
+                            <th>Target PYQs</th>
+                            <th>Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Process & Scheduling</strong></td>
+                            <td>CPU Scheduling (FCFS, SJF, RR, Priority)</td>
+                            <td>18 PYQs</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Synchronization</strong></td>
+                            <td>Mutex, Semaphores, Race Conditions</td>
+                            <td>10 PYQs + 3 implementations</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Memory Management</strong></td>
+                            <td>Paging, Virtual Memory, Page Replacement</td>
+                            <td>20 PYQs</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deadlocks</strong></td>
+                            <td>Prevention, Detection, Banker's Algorithm</td>
+                            <td>12 PYQs + manual execution</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td><strong>File Systems & Disk I/O</strong></td>
+                            <td>FCFS, SSTF, SCAN Scheduling</td>
+                            <td>8 PYQs</td>
+                            <td>6</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 15px;"><strong>OS Total: 64 PYQs | 52 hours</strong></p>
+
+                <h3>Computer Networks</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Key Concepts</th>
+                            <th>Target PYQs</th>
+                            <th>Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>OSI & TCP/IP Model</strong></td>
+                            <td>Layer architectures, Protocol mapping</td>
+                            <td>2 PYQs</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TCP/UDP & Transport</strong></td>
+                            <td>3-Way Handshake, Flow Control, Congestion Control</td>
+                            <td>6 PYQs</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IP & Routing</strong></td>
+                            <td>IPv4/IPv6, Subnetting, Routing Algorithms</td>
+                            <td>15 PYQs + CIDR calculations</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DNS & Application Layer</strong></td>
+                            <td>DNS Resolution, HTTP/1.1 vs HTTP/2, HTTPS/TLS</td>
+                            <td>10 PYQs</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Advanced Topics</strong></td>
+                            <td>WebSockets, gRPC, Load Balancing</td>
+                            <td>8 PYQs</td>
+                            <td>8</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 15px;"><strong>Networks Total: 43 PYQs | 50 hours</strong></p>
+
+                <h3>System Design</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Implementations</th>
+                            <th>Focus</th>
+                            <th>Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Design Patterns (12)</strong></td>
+                            <td>SOLID Principles, Creational, Structural, Behavioral</td>
+                            <td>Code 12 patterns end-to-end</td>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LLD Problems (4)</strong></td>
+                            <td>Rate Limiter, LRU Cache, Parking Lot, Notification Service</td>
+                            <td>Compile-ready code with SOLID</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HLD Systems (8)</strong></td>
+                            <td>URL Shortener, Distributed Logger, Chat, File Storage, etc.</td>
+                            <td>Complete architectures with diagrams</td>
+                            <td>24</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 15px;"><strong>System Design Total: 19 implementations | 60 hours</strong></p>
+
+                <div class="priority-box">
+                    <h4>Phase 3 Parallel Execution (Weeks 10–17)</h4>
+                    <ul>
+                        <li><strong>SEBI:</strong> Complete Paper II technical chapters, continue Paper I aptitude/English/GA blocks, solve mixed technical MCQs, and complete two full Phase I simulations.</li>
+                        <li><strong>PBC:</strong> Complete HLD systems, LLD implementations, design patterns, behavioral stories, resume evidence, and interview simulations.</li>
+                        <li><strong>January 1, 2027:</strong> Apply the notification-based allocation fork. Do not treat Apr–May 2027 as a confirmed SEBI exam window.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- TIMELINE SECTION -->
+            <section id="timeline">
+                <h2>📅 Week-by-Week Timeline</h2>
+
+                <div class="timeline"></div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Dates</th>
+                            <th>Phase</th>
+                            <th>Primary Topic</th>
+                            <th>Target</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td>Aug 28 - Sep 3</td>
+                            <td><span class="phase-badge phase-1">Phase 1</span></td>
+                            <td>Arrays & Strings</td>
+                            <td>20 problems</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td>Sep 4–10</td>
+                            <td><span class="phase-badge phase-1">Phase 1</span></td>
+                            <td>Linked Lists</td>
+                            <td>14 problems</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>Sep 11–17</td>
+                            <td><span class="phase-badge phase-1">Phase 1</span></td>
+                            <td>Stacks & Queues</td>
+                            <td>14 problems</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4</strong></td>
+                            <td>Sep 18–24</td>
+                            <td><span class="phase-badge phase-1">Phase 1</span></td>
+                            <td>DBMS Normalization</td>
+                            <td>Conceptual mastery</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5</strong></td>
+                            <td>Sep 29 - Oct 5</td>
+                            <td><span class="phase-badge phase-2">Phase 2</span></td>
+                            <td>Trees & BST</td>
+                            <td>22 problems</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6</strong></td>
+                            <td>Oct 6–12</td>
+                            <td><span class="phase-badge phase-2">Phase 2</span></td>
+                            <td>Heaps</td>
+                            <td>10 problems + implementation</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7</strong></td>
+                            <td>Oct 13–19</td>
+                            <td><span class="phase-badge phase-2">Phase 2</span></td>
+                            <td>OS: Scheduling</td>
+                            <td>18 PYQs, 90%+ accuracy</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>8</strong></td>
+                            <td>Oct 20–26</td>
+                            <td><span class="phase-badge phase-2">Phase 2</span></td>
+                            <td>Networks: TCP/IP</td>
+                            <td>18 PYQs</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9</strong></td>
+                            <td>Oct 27 - Nov 2</td>
+                            <td><span class="phase-badge phase-2">Phase 2</span></td>
+                            <td>DBMS: Transactions & Concurrency</td>
+                            <td>15 PYQs</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>10</strong></td>
+                            <td>Nov 3–9</td>
+                            <td><span class="phase-badge phase-3">Phase 3</span></td>
+                            <td>Graphs: BFS/DFS</td>
+                            <td>15 problems</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>11</strong></td>
+                            <td>Nov 10–16</td>
+                            <td><span class="phase-badge phase-3">Phase 3</span></td>
+                            <td>Shortest Paths & MST</td>
+                            <td>14 problems</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>12</strong></td>
+                            <td>Nov 17–23</td>
+                            <td><span class="phase-badge phase-3">Phase 3</span></td>
+                            <td>Advanced SQL & Indexing</td>
+                            <td>23 hard SQL problems</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>13</strong></td>
+                            <td>Nov 24–30</td>
+                            <td><span class="phase-badge phase-3">Phase 3</span></td>
+                            <td>OS: Memory & Deadlocks</td>
+                            <td>24 PYQs</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>14</strong></td>
+                            <td>Dec 1–7</td>
+                            <td><span class="phase-badge phase-3">Phase 3</span></td>
+                            <td>Dynamic Programming</td>
+                            <td>23 problems</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>15</strong></td>
+                            <td>Dec 8–14</td>
+                            <td>Both Tracks</td>
+                            <td>Design Patterns & LLD Intro</td>
+                            <td>12 patterns + Rate Limiter</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>16</strong></td>
+                            <td>Dec 15–21</td>
+                            <td>Parallel execution</td>
+                            <td>SEBI: Theory | PBC: HLD Systems</td>
+                            <td>Mock Test + 4 HLD designs</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>17</strong></td>
+                            <td>Dec 22–31</td>
+                            <td>Parallel review + Jan 1 fork prep</td>
+                            <td>Mock Tests + Weak Area Review</td>
+                            <td>2 Full-length mocks, >75% score</td>
+                            <td>▫️</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Integrated Track Targets by Phase</h3>
+                <table>
+                    <thead><tr><th>Phase</th><th>SEBI preparation</th><th>PBC preparation</th><th>Exit evidence</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Phase 1<br>Weeks 1–4</strong></td><td>Quant/reasoning/English/current-affairs starter blocks; arrays, lists, stacks, queues, DBMS normalization</td><td>Define target roles and begin one HLD/design-pattern artifact</td><td>48 DSA problems, BCNF practice, 4 weeks of current-affairs notes</td></tr>
+                        <tr><td><strong>Phase 2<br>Weeks 5–9</strong></td><td>Continue Paper I drills; trees, heaps, OS scheduling, TCP/IP, transactions/concurrency</td><td>LLD rate limiter/LRU, design patterns, HLD requirements and trade-offs</td><td>80 DSA problems, 51 technical PYQs, 2 LLD/design artifacts</td></tr>
+                        <tr><td><strong>Phase 3<br>Weeks 10–17</strong></td><td>Graphs, SQL, OS memory/deadlocks, DP, security; mixed MCQs and two Phase I simulations</td><td>HLD systems, LLD, behavioral stories, resume evidence, interview simulations</td><td>SEBI Paper I/II revision complete; 7 HLD, 2 LLD, 12 patterns, 5 stories</td></tr>
+                        <tr><td><strong>Jan 1 fork</strong></td><td>If officially announced: 70–90% SEBI until the published exam</td><td>If no SEBI notice: 70% PBC applications/interviews; otherwise 10–30% maintenance</td><td>Allocation based only on official SEBI notification status</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- RESOURCES SECTION -->
+            <section id="resources">
+                <h2>📚 Resources & References</h2>
+
+                <h3>Authority Books (Read in Priority Order)</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Data Structures & Algorithms</h4>
+                        <ul>
+                            <li><strong>Introduction to Algorithms (CLRS)</strong> — Comprehensive, mathematical</li>
+                            <li><strong>Abdul Bari's Algorithm Series (YouTube)</strong> — Free, high-quality visual explanations</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Database Management</h4>
+                        <ul>
+                            <li><strong>Database System Concepts (Silberschatz, Korth)</strong> — Industry standard, chapters 1–12</li>
+                            <li>Focus on Normalization (Ch. 6–7), Transactions (Ch. 15–16)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Operating Systems</h4>
+                        <ul>
+                            <li><strong>Operating System Concepts (Galvin)</strong> — Rigorous, exam-focused</li>
+                            <li><strong>Operating Systems: Three Easy Pieces (OEP)</strong> — Free online, accessible</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Computer Networks</h4>
+                        <ul>
+                            <li><strong>Computer Networking: A Top-Down Approach (Kurose & Ross)</strong> — Industry standard</li>
+                            <li>Focus on Transport Layer (Ch. 3) and Network Layer (Ch. 4)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>System Design</h4>
+                        <ul>
+                            <li><strong>System Design Interview (Alex Xu, Vol. 1–2)</strong> — Comprehensive, practical</li>
+                            <li><strong>Head First Design Patterns (Freeman)</strong> — LLD + patterns</li>
+                            <li><strong>Clean Code (Robert C. Martin)</strong> — Professional code practices</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Online Platforms</h4>
+                        <ul>
+                            <li><strong>LeetCode:</strong> 150 mediums + 20 hards (DSA + SQL)</li>
+                            <li><strong>GateOverflow:</strong> GATE CSE PYQs (DBMS, OS, Networks)</li>
+                            <li><strong>Testbook/Oliveboard:</strong> 10–15 SEBI IT full-length mocks</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Study Methodology</h3>
+                <div class="info-box">
+                    <h4>The Feynman + Spaced Repetition Hybrid</h4>
+                    <p><strong>Phase 1: LEARN (45 mins)</strong></p>
+                    <ul>
+                        <li>Read 1 sub-topic from authority source</li>
+                        <li>Watch 1 focused video (10–15 mins max)</li>
+                        <li>Write 3–5 bullet-point summaries in your own words</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Phase 2: CODE/SOLVE (45 mins)</strong></p>
+                    <ul>
+                        <li>Solve 3–5 problems related to the sub-topic</li>
+                        <li>For DSA: Code from scratch (no copying)</li>
+                        <li>For System Design: Draw architecture diagrams</li>
+                        <li>For DBMS: Write queries or analyze execution plans</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Phase 3: TEACH (15 mins buffer)</strong></p>
+                    <ul>
+                        <li>Explain the concept to yourself (verbally)</li>
+                        <li>Identify gaps in understanding</li>
+                        <li>Update error log if mistakes occurred</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Phase 4: VERIFY & LOG (10 mins)</strong></p>
+                    <ul>
+                        <li>Compare your solution to reference solutions</li>
+                        <li>Record in error log if needed</li>
+                        <li>Mark completion in daily checklist</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Total per topic cycle: 115 mins (~2 hours per day)</strong></p>
+                </div>
+
+                <h3>Weekly Study Structure</h3>
+                <div class="success-box">
+                    <h4>Monday–Friday: High-Intensity Study (4 hours/day)</h4>
+                    <ul>
+                        <li><strong>Morning Block (6:30–7:45 AM):</strong> 1.5 hrs → DSA/SQL technical study plus Quant, Reasoning, English, or current affairs rotation</li>
+                        <li><strong>Work Break (9:30 AM–5:30 PM):</strong> Passive learning, concept review</li>
+                        <li><strong>Evening Block 1 (6:00–7:30 PM):</strong> 1.5 hrs → alternate Paper II technical study and PBC HLD/LLD work</li>
+                        <li><strong>Evening Block 2 (8:00–9:00 PM):</strong> 1 hr → timed SEBI practice, error-log review, behavioral preparation, or resume evidence</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Saturday: Consolidation Day (3 hours)</strong></p>
+                    <ul>
+                        <li>2-hour mock test or complete 1 LLD problem</li>
+                        <li>1-hour error log review + concept sketching (Mermaid diagrams)</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Sunday: Recovery + Planning (1 hour)</strong></p>
+                    <ul>
+                        <li>Week review + planning next week</li>
+                        <li>Physical recovery: walk, weightlifting, meal prep</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Weekly Total: 24 hours study + 7 hours recovery</strong></p>
+                </div>
+
+                <h3>Integrated Weekly Track Matrix</h3>
+                <table>
+                    <thead><tr><th>Day</th><th>SEBI Phase I</th><th>PBC Preparation</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Monday</strong></td><td>Quant chapter + 15 timed questions; current affairs</td><td>HLD requirements and capacity estimate</td></tr>
+                        <tr><td><strong>Tuesday</strong></td><td>Paper II technical chapter + 20 technical MCQs</td><td>DSA interview set or coding pattern</td></tr>
+                        <tr><td><strong>Wednesday</strong></td><td>Reasoning puzzle set; English drill</td><td>LLD/design pattern implementation</td></tr>
+                        <tr><td><strong>Thursday</strong></td><td>Paper II technical chapter + PYQs; current affairs</td><td>HLD trade-offs, schema, and API design</td></tr>
+                        <tr><td><strong>Friday</strong></td><td>English comprehension + mixed Paper I set</td><td>Behavioral story, resume evidence, or mock interview</td></tr>
+                        <tr><td><strong>Saturday</strong></td><td>SEBI sectional review or mock analysis</td><td>Complete one HLD/LLD artifact</td></tr>
+                        <tr><td><strong>Sunday</strong></td><td>Error-log and current-affairs revision</td><td>Weekly planning only; no new PBC content</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- LPA SECTION -->
+            <section id="lpa">
+                <h2>💰 Targeting 65–70 LPA: Strategy & Requirements</h2>
+
+                <h3>Understanding Tier-1 PBC Compensation (2026)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Role Level</th>
+                            <th>YOE Range</th>
+                            <th>Typical CTC</th>
+                            <th>Your Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SDE-2</strong></td>
+                            <td>5–7 years</td>
+                            <td>₹40L–₹55L</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SDE-3 (Top)</strong></td>
+                            <td>7–10 years</td>
+                            <td>₹55L–₹75L</td>
+                            <td>✓ ₹65–70L</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Staff Engineer</strong></td>
+                            <td>10+ years</td>
+                            <td>₹70L–₹90L+</td>
+                            <td>Stretch goal</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 15px;"><strong>Your Position:</strong> 6 YOE = Lower end of SDE-3 range. Need to demonstrate exceptional skills to command ₹65–70L.</p>
+
+                <h3>Typical ₹65–70L CTC Breakdown</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Direct Compensation</h4>
+                        <ul>
+                            <li><strong>Base Salary:</strong> ₹30L–₹35L</li>
+                            <li><strong>Annual Bonus:</strong> ₹8L–₹12L (15–20%)</li>
+                            <li><strong>Subtotal:</strong> ₹38L–₹47L</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Equity & Benefits</h4>
+                        <ul>
+                            <li><strong>Stock (4-year vest):</strong> ₹25L–₹30L</li>
+                            <li><strong>Signing Bonus:</strong> ₹2L–₹5L (one-time)</li>
+                            <li><strong>Other Benefits:</strong> Health insurance, relocation</li>
+                            <li><strong>Total CTC:</strong> ₹65L–₹70L</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>What Interviewers Evaluate at 65–70 LPA</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Weight</th>
+                            <th>What They're Testing</th>
+                            <th>Your Preparation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>System Design</strong></td>
+                            <td>40%</td>
+                            <td>Distributed systems, scalability, trade-offs (CAP theorem), handling scale (1M–1B users)</td>
+                            <td>Design 8+ complete systems with diagrams, justify every decision</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Advanced DSA</strong></td>
+                            <td>30%</td>
+                            <td>Solve hards optimally, both time & space complexity, edge case handling</td>
+                            <td>Solve 20+ hard problems, optimize to best possible solution</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Technical Leadership</strong></td>
+                            <td>15%</td>
+                            <td>Make decisions independently, mentor others, balance technical purity with business pragmatism</td>
+                            <td>Prepare 5–7 polished STAR narratives, demonstrate leadership mindset</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Domain Expertise</strong></td>
+                            <td>10%</td>
+                            <td>Deep knowledge in 1–2 specialized areas (distributed caching, real-time systems, data pipelines)</td>
+                            <td>Choose 1 domain, read 2–3 papers, implement 1 complete system</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Communication</strong></td>
+                            <td>5%</td>
+                            <td>Articulate complex concepts clearly, explain trade-offs, ask clarifying questions</td>
+                            <td>Practice explaining CAP theorem, consistency models, distributed algorithms</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>LPA Eligibility Checklist</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Criterion</th>
+                            <th>Requirement</th>
+                            <th>Your Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Years of Experience</strong></td>
+                            <td>6–9 YOE (ideally 7–8)</td>
+                            <td>✓ You have 6</td>
+                            <td>Highlight impact + achievements in interviews</td>
+                        </tr>
+                        <tr>
+                            <td><strong>System Design Mastery</strong></td>
+                            <td>Design 8+ systems flawlessly</td>
+                            <td>▫️ (Build by Week 16)</td>
+                            <td>Complete HLD systems: URL Shortener, Logger, Chat, File Storage, Rate Limiter, etc.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Advanced DSA Skills</strong></td>
+                            <td>Solve 20+ hard problems optimally</td>
+                            <td>▫️ (Build by Week 14)</td>
+                            <td>After mastering mediums, solve 20+ hard problems, optimize fully</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Leadership Evidence</strong></td>
+                            <td>2–3 strong STAR narratives</td>
+                            <td>▫️ (Prepare by Week 16)</td>
+                            <td>Document: technical decisions, mentorship, conflict resolution, complex projects</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Domain Expertise</strong></td>
+                            <td>Deep knowledge in 1 area</td>
+                            <td>▫️ (Choose by Week 15)</td>
+                            <td>Pick: Distributed Caching, Real-Time Systems, Data Pipelines, or API Design</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Communication Skills</strong></td>
+                            <td>Articulate trade-offs clearly</td>
+                            <td>✓ (From experience)</td>
+                            <td>Practice mock interviews, record yourself explaining systems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Competing Offers/Pipeline</strong></td>
+                            <td>2+ offers or active interview pipeline</td>
+                            <td>▫️ (Build by Jan 2027)</td>
+                            <td>Start interviews by Dec 2026, have 2+ competing offers for negotiation leverage</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Domain Expertise Options (Pick ONE)</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Option 1: Distributed Caching</h4>
+                        <p><strong>Why:</strong> Highly scalable systems often bottleneck on caching.</p>
+                        <ul>
+                            <li>Study Redis internals, replication, persistence</li>
+                            <li>Design cache layer for 3+ systems</li>
+                            <li>Implement: Cache-Aside, Write-Through, Write-Back strategies</li>
+                            <li>Read: Redis whitepapers, Memcached architecture</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Option 2: Real-Time Systems</h4>
+                        <p><strong>Why:</strong> WebSockets, live data, low-latency messaging are premium skills.</p>
+                        <ul>
+                            <li>Study WebSocket protocols, long-polling, Server-Sent Events</li>
+                            <li>Design: Real-time chat, live notifications, collaborative editing</li>
+                            <li>Implement: Message ordering, duplicate handling, presence tracking</li>
+                            <li>Read: WebSocket RFC, Ably architecture, Firebase docs</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Option 3: Data Pipelines & ETL</h4>
+                        <p><strong>Why:</strong> Data-intensive companies value engineers with big data experience.</p>
+                        <ul>
+                            <li>Study Kafka, message ordering, exactly-once semantics</li>
+                            <li>Design: Log aggregation, event streaming, analytical pipelines</li>
+                            <li>Implement: Partition management, rebalancing, consumer groups</li>
+                            <li>Read: Kafka design documents, LinkedIn/Uber architecture blogs</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Option 4: API Design & Microservices</h4>
+                        <p><strong>Why:</strong> Enterprise systems rely on robust APIs and service boundaries.</p>
+                        <ul>
+                            <li>Study gRPC, REST best practices, API versioning, backward compatibility</li>
+                            <li>Design: API gateway, service mesh, circuit breakers</li>
+                            <li>Implement: Rate limiting (token bucket), authentication, request tracing</li>
+                            <li>Read: Google API Improvement Proposals, Shopify API design blogs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Salary Negotiation Strategy</h3>
+                <div class="priority-box">
+                    <h4>🎯 Before Interviews</h4>
+                    <ul>
+                        <li>Research salary data on <strong>Levels.fyi, Blind, AskAManager</strong> (at least 20 data points)</li>
+                        <li>Know your BATNA (Best Alternative to Negotiated Agreement) → Have 2+ competing offers</li>
+                        <li>Prepare: "Why ₹65–70L?" answer → articulate your impact, skills, market rate</li>
+                    </ul>
+
+                    <h4 style="margin-top: 20px;">🎯 During Offer Stage</h4>
+                    <ul>
+                        <li><strong>Never go first:</strong> Let company make first offer</li>
+                        <li><strong>Counter professionally:</strong> "Based on market research and my skills, I'm looking for ₹68L"</li>
+                        <li><strong>Negotiate components:</strong> Base + Bonus + Stock + Signing Bonus + Relocation</li>
+                        <li><strong>Leverage competing offers:</strong> "I have an offer at ₹70L, can you match or exceed?"</li>
+                        <li><strong>Get it in writing:</strong> Email confirmation of all components (base, bonus, stock vesting)</li>
+                    </ul>
+
+                    <h4 style="margin-top: 20px;">🎯 After Acceptance</h4>
+                    <ul>
+                        <li>Confirm all terms in writing (relocation assistance, start date, bonus structure)</li>
+                        <li>Understand vesting schedule (typically 4-year vest with 1-year cliff)</li>
+                        <li>Plan: Annual raises typically 8–15% in tech</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- TRACK DECISION SECTION -->
+            <section>
+                <h2>🔀 Pragmatic Parallel Track Decision</h2>
+
+                <div class="info-box">
+                    <p style="font-size: 1.1em; margin-bottom: 10px;"><strong>SEBI timing is uncertain, so preparation must remain parallel.</strong></p>
+                    <p>Use <strong>January 1, 2027</strong> as the formal checkpoint. Decide from official SEBI notifications, not assumptions or rumors.</p>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Period</th>
+                            <th>SEBI Allocation</th>
+                            <th>PBC Allocation</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Aug 28–Dec 31, 2026</strong></td>
+                            <td>60%</td>
+                            <td>40%</td>
+                            <td>Shared CS foundation, SEBI PYQs, HLD/LLD, and behavioral preparation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>On Jan 1, if SEBI is announced</strong></td>
+                            <td>70–90%</td>
+                            <td>10–30%</td>
+                            <td>Prepare for the published exam date; retain a small PBC maintenance block</td>
+                        </tr>
+                        <tr>
+                            <td><strong>On Jan 1, if not announced</strong></td>
+                            <td>30% maintenance</td>
+                            <td>70%</td>
+                            <td>Start applications and interview preparation; stop waiting for an uncertain exam</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Apr–May 2027</strong></td>
+                            <td>90% if exam exists</td>
+                            <td>10% continuity</td>
+                            <td>Attempt SEBI only if officially scheduled; otherwise continue the PBC interview cycle</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="margin-top: 30px;">The Operating Decision</h3>
+                <div class="success-box">
+                    <p><strong>Choose: Pragmatic Parallel Track</strong></p>
+                    <p style="margin-top: 10px;"><strong>Reasoning:</strong></p>
+                    <ul>
+                        <li>SEBI remains urgent because the age cap closes in May 2027.</li>
+                        <li>PBC remains active because a SEBI IT vacancy may be delayed or skipped.</li>
+                        <li>Common DSA, DBMS, OS, and networking work compounds across both tracks.</li>
+                        <li>By December, you have measurable readiness for either an SEBI sprint or PBC interviews.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- BURNOUT PREVENTION SECTION -->
+            <section>
+                <h2>⚠️ Burnout Prevention & Wellness Protocols</h2>
+
+                <h3>Red Flags → Immediate Action Required</h3>
+                <div class="warning-box">
+                    <ul>
+                        <li>📛 Studying >5 hours/day for >3 consecutive days → <strong>STOP. Switch to P2 (recovery tasks)</strong></li>
+                        <li>😴 <6 hours sleep for 2+ nights → <strong>STOP. Sleep 8 hours. Resume next day</strong></li>
+                        <li>❌ Solving problems <50% accuracy → <strong>Review fundamentals instead of new problems</strong></li>
+                        <li>😰 Feeling overwhelmed → <strong>Execute `/burnout-check` immediately (3-day recovery routine)</strong></li>
+                    </ul>
+                </div>
+
+                <h3>Green Flags → Healthy Pace Confirmed</h3>
+                <div class="success-box">
+                    <ul>
+                        <li>✓ Completing 3 tasks/day on time consistently</li>
+                        <li>✓ Sleeping 7–8 hours daily</li>
+                        <li>✓ Exercise 5x per week (minimum 30 mins: weightlifting + walks)</li>
+                        <li>✓ Mock test score improving week-over-week by 2–5%</li>
+                        <li>✓ <5 repeated mistakes on same concept (error log trending downward)</li>
+                    </ul>
+                </div>
+
+                <h3>Anti-Burnout Daily Routine</h3>
+                <div class="info-box">
+                    <p><strong>Sample Daily Schedule (4 hours study + full work day + recovery):</strong></p>
+                    <ul>
+                        <li><strong>6:30–7:45 AM:</strong> Morning coffee + 1.5 hrs DSA/SQL study (45 min learn + 45 min code)</li>
+                        <li><strong>7:45–9:30 AM:</strong> Breakfast, commute, prep for work</li>
+                        <li><strong>9:30 AM–5:30 PM:</strong> Full-time work (with 5-min concept review breaks)</li>
+                        <li><strong>5:30–6:00 PM:</strong> Walk/decompression (non-study)</li>
+                        <li><strong>6:00–7:30 PM:</strong> 1.5 hrs System Design or DBMS study</li>
+                        <li><strong>7:30–8:00 PM:</strong> Dinner, family time</li>
+                        <li><strong>8:00–9:00 PM:</strong> 1 hr OS/Networks or error log review</li>
+                        <li><strong>9:00–9:30 PM:</strong> Cooldown (no screens), prepare for bed</li>
+                        <li><strong>9:30 PM–6:30 AM:</strong> 9 hours sleep (buffer for sleep debt)</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Weekly Total:</strong> 4 hrs/day × 5 days = 20 hrs study + 7 hrs recovery + 56 hrs work + 63 hrs sleep</p>
+                </div>
+
+                <h3>3-Day Recovery Routine (If Burnout Detected)</h3>
+                <div class="priority-box">
+                    <p><strong>Day 1: Active Recovery</strong></p>
+                    <ul>
+                        <li>30 mins: Review error log (identify most common mistakes)</li>
+                        <li>45 mins: Sketch 2 concept diagrams (Mermaid format)</li>
+                        <li>60 mins: Physical recovery (walk, weightlifting, no study)</li>
+                    </ul>
+
+                    <p style="margin-top: 15px;"><strong>Day 2: Passive Learning</strong></p>
+                    <ul>
+                        <li>30 mins: Watch recap videos on YouTube (passive, no coding)</li>
+                        <li>30 mins: Read 1 blog post on system design</li>
+                        <li>90 mins: Physical recovery + meal prep</li>
+                    </ul>
+
+                    <p style="margin-top: 15px;"><strong>Day 3: Light Review</strong></p>
+                    <ul>
+                        <li>30 mins: Concept sketching + mind mapping weak topics</li>
+                        <li>30 mins: Mock test Q&A review (not full test)</li>
+                        <li>120 mins: Rest + social time (no study)</li>
+                    </ul>
+
+                    <p style="margin-top: 15px;"><strong>Total Recovery: ~6 hours over 3 days (vs normal 12 hours)</strong></p>
+                </div>
+            </section>
+
+            <!-- FINAL SUMMARY SECTION -->
+            <section>
+                <h2>📊 Master Summary Dashboard</h2>
+
+                <h3>By-The-Numbers Targets (Phase 1: 17 Weeks)</h3>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="number">170+</div>
+                        <div class="label">DSA Problems Solved</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">58</div>
+                        <div class="label">DBMS Problems</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">107</div>
+                        <div class="label">CS PYQ Problems</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">19</div>
+                        <div class="label">System Designs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">2</div>
+                        <div class="label">Full-Length Mocks</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">75%+</div>
+                        <div class="label">Target Mock Score</div>
+                    </div>
+                </div>
+
+                <h3>Success Metrics by Category</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Target</th>
+                            <th>Success Criteria</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>DSA</strong></td>
+                            <td>170 mediums + 20 hards</td>
+                            <td>Solve mediums in <25 mins, hards optimally</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DBMS</strong></td>
+                            <td>58 problems + conceptual depth</td>
+                            <td>90%+ accuracy on PYQs, normalize to BCNF</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OS</strong></td>
+                            <td>64 PYQs + deep understanding</td>
+                            <td>90%+ accuracy, solve Banker's algorithm</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Networks</strong></td>
+                            <td>43 PYQs + protocol mastery</td>
+                            <td>90%+ accuracy, draw TCP handshake</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SEBI Paper I</strong></td>
+                            <td>Quant, Reasoning, English, GA/current affairs</td>
+                            <td>8 Quant/Reasoning/English drills, 16 weeks current-affairs notes</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>System Design</strong></td>
+                            <td>12 patterns + 4 LLD + 8 HLD</td>
+                            <td>Clean code, complete architectures with trade-offs</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mock Tests</strong></td>
+                            <td>10–15 SEBI + 2 PBC sims</td>
+                            <td>75%+ aggregate score</td>
+                            <td>▫️</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Error Log</strong></td>
+                            <td><5 repeated mistakes</td>
+                            <td>Trending downward week-over-week</td>
+                            <td>▫️</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Decision Checklist: BEFORE You Start</h3>
+                <div class="info-box">
+                    <ul>
+                        <li>✓ Follow the parallel track: <strong>60% SEBI / 40% PBC</strong> through Dec 31</li>
+                        <li>✓ Set up study environment: Quiet space, LeetCode account, GateOverflow bookmarks</li>
+                        <li>✓ Create error log file: Use template from [03-Dual-Track-Optimized-Roadmap.md](03-Dual-Track-Optimized-Roadmap.md)</li>
+                        <li>✓ Schedule deep work blocks: 6:30–7:45 AM & 6:00–9:00 PM non-negotiable</li>
+                        <li>✓ Bookmark authority resources: CLRS, Korth, Kurose & Ross, Alex Xu</li>
+                        <li>✓ Set weekly review: Every Sunday evening, update progress tracking</li>
+                        <li>✓ Share plan with accountability partner: Weekly check-ins</li>
+                        <li>✓ Start Week 1 on Sep 1 (Sep 3 is buffer): First 20 Array problems</li>
+                        <li>✓ Review official SEBI notifications and make the formal pivot decision on Jan 1, 2027</li>
+                    </ul>
+                </div>
+
+                <h3>Quick Reference: File Navigation</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>Purpose</th>
+                            <th>When to Use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>01-Master-Study-Plan.md</strong></td>
+                            <td>Comprehensive resource list, anti-burnout protocols</td>
+                            <td>Reference full details on topics, books, success metrics</td>
+                        </tr>
+                        <tr>
+                            <td><strong>02-Priority-Ordered-Syllabus.md</strong></td>
+                            <td>Week-by-week breakdown (Weeks 1–14)</td>
+                            <td>Check weekly targets, problems to solve, success criteria</td>
+                        </tr>
+                        <tr>
+                            <td><strong>03-Dual-Track-Optimized-Roadmap.md</strong></td>
+                            <td>Parallel-track strategy + January 1 fork + LPA strategy</td>
+                            <td>Choose your track, understand 65–70 LPA requirements</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Master-Study-Report.html</strong> (this file)</td>
+                            <td>Integrated view of all plans with easy navigation</td>
+                            <td>Quick overview, print for wall reference</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- FINAL CALL TO ACTION -->
+            <section>
+                <div class="success-box" style="text-align: center; padding: 40px; border-radius: 10px;">
+                    <h2 style="color: #2e7d32; margin: 0 0 20px 0;">🚀 You're Ready. Now Execute.</h2>
+                    <p style="font-size: 1.1em; margin: 15px 0;">This roadmap keeps both outcomes viable: SEBI readiness if an official notification arrives, and serious PBC interview readiness if it does not.</p>
+                    <p style="margin: 15px 0;"><strong>Week 1 Action:</strong> Solve 20 array problems on LeetCode. Start Sep 1, 2026.</p>
+                    <p style="margin: 15px 0;"><strong>Track Your Progress:</strong> Update this HTML file weekly. Share with accountability partner.</p>
+                    <p style="margin: 15px 0;"><strong>Stay Disciplined:</strong> 4 hours/day, 5 days/week. Sleep 8 hours. Exercise 5 days/week. That's it.</p>
+                    <p style="font-size: 0.95em; color: #555; margin-top: 30px;">Remember: SEBI exams wait for no one. PBC roles value execution over perfection. Both reward consistency.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p><strong>Master Study Report</strong> | Generated: Aug 28, 2026</p>
+            <p>For updates, corrections, or track changes, refer to: [01-Master-Study-Plan.md](01-Master-Study-Plan.md), [02-Priority-Ordered-Syllabus.md](02-Priority-Ordered-Syllabus.md), [03-Dual-Track-Optimized-Roadmap.md](03-Dual-Track-Optimized-Roadmap.md)</p>
+            <p style="margin-top: 15px; font-size: 0.85em;">This roadmap is a living document. Review and update weekly. Print this HTML for wall reference.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                this.classList.toggle('active');
+                content.classList.toggle('active');
+            });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Print functionality
+        window.print = function() {
+            window.print();
+        };
+    </script>
+</body>
+</html>
