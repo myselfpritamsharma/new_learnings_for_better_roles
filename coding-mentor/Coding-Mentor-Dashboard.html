@@ -203,6 +203,33 @@
             padding: 16px 20px;
         }
 
+        details.theory-group {
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            border-left: 6px solid #4f46e5;
+            margin: 24px 0;
+            padding: 20px;
+        }
+
+        details.theory-group > summary {
+            color: #312e81;
+            font-size: 1.25em;
+        }
+
+        details.theory-group > details {
+            background: #ffffff;
+            border-left-color: #818cf8;
+            margin-left: 8px;
+        }
+
+        .theory-label {
+            color: #6b7280;
+            font-size: 0.85em;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
         summary {
             color: #667eea;
             cursor: pointer;
@@ -302,7 +329,17 @@
             
             <!-- TODAY'S TASK -->
             <section id="today-task">
-                <h2>📋 Today's Task (2026-09-01)</h2>
+                <h2>📋 Today's Task (Day 4 - 2026-09-05)</h2>
+
+                <div class="highlight">
+                    <strong>Study-first workflow:</strong> Read the expandable theory blocks in the DSA and LLD sections before attempting today's questions. After studying, answer the interviewer questions one at a time in chat. New daily theory will be appended here.
+                </div>
+
+                <h3>Day 4 Focus: Distributed Rate Limiter Design</h3>
+                <div class="card">
+                    <strong>Study:</strong> Read the expandable <em>Day 4 Theory: Atomicity, Redis, and Failure Handling</em> block in the LLD section, then answer the interview questions below one at a time.<br>
+                    <strong>Scope:</strong> Shared state, race conditions, Redis atomicity, fail-open/fail-closed behavior, and observability.
+                </div>
 
                 <h3>Task 1: DSA — Permutation in String</h3>
                 <div class="card">
@@ -333,6 +370,35 @@
 
     return False</pre>
                     <strong>Takeaway:</strong> For fixed-size sliding window, add the incoming right character, remove the outgoing left character, then compare frequency maps.
+                </div>
+
+                <h3>Day 4 DSA: Longest Repeating Character Replacement</h3>
+                <div class="card">
+                    <strong>Status:</strong> ✅ SOLVED<br>
+                    <strong>Pattern:</strong> <span class="pattern-badge">Variable Sliding Window</span> | <strong>Difficulty:</strong> Medium<br>
+                    <strong>Link:</strong> <a href="https://leetcode.com/problems/longest-repeating-character-replacement/" target="_blank">LeetCode problem</a><br>
+                    <strong>Solution:</strong>
+                    <pre>def characterReplacement(self, s: str, k: int) -> int:
+    max_freq = 0
+    freq = {}
+    left = 0
+    max_len = 0
+
+    for right in range(len(s)):
+        freq[s[right]] = freq.get(s[right], 0) + 1
+        max_freq = max(max_freq, freq[s[right]])
+
+        window_size = right - left + 1
+        replacement_needed = window_size - max_freq
+
+        if replacement_needed > k:
+            freq[s[left]] -= 1
+            left += 1
+
+        max_len = max(max_len, right - left + 1)
+
+    return max_len</pre>
+                    <strong>Takeaway:</strong> Expand, calculate replacements, shrink if invalid, then measure the repaired window.
                 </div>
 
                 <h3>Task 2: LLD — Rate Limiter Algorithm Choice</h3>
@@ -367,6 +433,10 @@
                     <a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/DSA/sliding-window/longest-substring-without-repeating-characters.py" target="_blank">Longest Substring Without Repeating Characters solution</a><br>
                     <a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/DSA/sliding-window/permutation-in-string.py" target="_blank">Permutation in String solution</a>
                 </div>
+
+                <details class="theory-group" open>
+                    <summary>DSA Theory: Patterns, Invariants, and Worked Examples</summary>
+                    <p class="theory-label">Open a topic below to study it. Collapse the whole group when you want a shorter dashboard.</p>
                 
                 <h3>Pattern 1: Two-Pointer</h3>
                 <div class="card">
@@ -422,7 +492,7 @@
                     <strong>Idea:</strong> Dynamic window expands/contracts to find optimal subarray/substring in O(n).<br>
                     <strong>Problems:</strong> Longest Substring Without Repeating Characters, Minimum Window Substring<br>
                     <strong>Key:</strong> Use HashMap to track state; each element added/removed at most once.<br>
-                    <strong>Status:</strong> <span class="pattern-badge">🟡 Yellow (2/3 solved)</span>
+                    <strong>Status:</strong> <span class="pattern-badge">🟡 Yellow (3/4 solved)</span>
                 </div>
 
                 <details open>
@@ -467,6 +537,18 @@
                     <strong>Common bug:</strong> When shrinking, decrement <code>freq[s[left]]</code>, not <code>freq[s[right]]</code>. The left character is the one leaving the window.
                     <br><strong>Complexity:</strong> O(n) time, O(k) space, where k is the number of distinct characters.
                 </details>
+
+                <details open>
+                    <summary>Day 4 Theory: Longest Repeating Character Replacement</summary>
+                    <p><strong>Problem:</strong> Given an uppercase string and integer <code>k</code>, find the longest substring that can be made one repeated character after at most <code>k</code> replacements.</p>
+                    <p><strong>Window rule:</strong> Let <code>window_length</code> be the current window size and <code>max_frequency</code> be the count of its most common character. Replacements needed are:</p>
+                    <pre>replacements_needed = window_length - max_frequency</pre>
+                    <p>The window is valid when <code>replacements_needed &lt;= k</code>. If invalid, move <code>left</code> forward until it becomes valid.</p>
+                    <p><strong>Example:</strong> For <code>"AABABBA"</code> and <code>k = 1</code>, <code>"AABA"</code> has length 4 and maximum frequency 3, so it needs 1 replacement and is valid.</p>
+                    <p><strong>Common mistake:</strong> Comparing the number of distinct characters with <code>k</code>. The correct value is window length minus the highest frequency.</p>
+                    <p><strong>Complexity:</strong> O(n) time and O(1) space for the 26 uppercase letters.</p>
+                    <p><strong>Interview phrase:</strong> "I keep the largest window where all non-majority characters can be replaced within k operations."</p>
+                </details>
                 
                 <h3>Pattern 3: Binary Search</h3>
                 <div class="card">
@@ -500,6 +582,8 @@
                     <strong>Status:</strong> <span class="pattern-badge">🔴 Red (Not started)</span>
                 </div>
                 
+                </details>
+
                 <h3>Problems Solved</h3>
                 <table>
                     <thead>
@@ -537,6 +621,14 @@
                             <td>1</td>
                             <td>✅ Solved</td>
                         </tr>
+                        <tr>
+                            <td>2026-09-05</td>
+                            <td><a href="https://leetcode.com/problems/longest-repeating-character-replacement/" target="_blank">Longest Repeating Character Replacement</a></td>
+                            <td><span class="pattern-badge">Sliding Window</span></td>
+                            <td>Medium</td>
+                            <td>1</td>
+                            <td>✅ Solved</td>
+                        </tr>
                     </tbody>
                 </table>
                 
@@ -556,6 +648,10 @@
                     <a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/SOLID-Principles-Notes.md" target="_blank">SOLID Principles notes</a><br>
                     <a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/LLD/rate-limiter/algorithm-choice.md" target="_blank">Rate Limiter algorithm choice</a>
                 </div>
+
+                <details class="theory-group" open>
+                    <summary>LLD Theory: SOLID, Rate Limiter, and Interview Design</summary>
+                    <p class="theory-label">Study the principles first, then open the Rate Limiter design and interview answers.</p>
                 
                 <h3>SOLID Principles (The Foundation)</h3>
                 
@@ -739,7 +835,91 @@ else:
                     </ul>
                     <p><strong>Tradeoff to mention:</strong> If strict accuracy is required, use Sliding Window Log or Sliding Window Counter, but memory and complexity increase.</p>
                 </details>
+
+                <details open>
+                    <summary>Day 2 Interview Solutions: Rate Limiter Questions</summary>
+                    <h4>1. Why Token Bucket instead of Fixed Window?</h4>
+                    <p><strong>Answer:</strong> Fixed Window is simple, but it allows a boundary burst: 100 requests at the end of one minute and 100 at the beginning of the next. Token Bucket allows controlled bursts up to the bucket capacity while enforcing an average refill rate.</p>
+
+                    <h4>2. Why not keep counters on each application server?</h4>
+                    <p><strong>Answer:</strong> Each server would see only part of a user's traffic. If a user is routed across five servers, they could exceed the global limit five times. A shared store such as Redis gives every server the same user state.</p>
+
+                    <h4>3. How do you prevent concurrent requests consuming the same token?</h4>
+                    <p><strong>Answer:</strong> The refill, check, decrement, and state update must be one atomic operation. With Redis, use a Lua script or a suitable atomic command sequence. Never perform separate read and write operations without concurrency protection.</p>
+                    <pre>-- Conceptual atomic operation
+read bucket state
+calculate refilled tokens
+if tokens >= 1:
+    decrement token
+    save tokens and timestamp
+    return allowed
+else:
+    return rejected</pre>
+
+                    <h4>4. What if Redis is unavailable?</h4>
+                    <p><strong>Answer:</strong> Choose the policy based on the protected resource. For a payment or security-sensitive API, fail closed and reject or temporarily limit requests. For a low-risk read API, fail open for a short period to preserve availability. Add alerts, timeouts, circuit breakers, and a local emergency limiter.</p>
+
+                    <h4>5. How do you support free and premium users?</h4>
+                    <p><strong>Answer:</strong> Resolve a user's plan before the limiter runs. Pass a policy object containing capacity and refill rate. For example, free users may get 100 requests/minute and premium users 1,000 requests/minute. The algorithm remains unchanged; only policy data changes.</p>
+                    <pre>class RateLimitPolicy:
+    def __init__(self, capacity, refill_rate):
+        self.capacity = capacity
+        self.refill_rate = refill_rate
+
+policies = {
+    "free": RateLimitPolicy(100, 100 / 60),
+    "premium": RateLimitPolicy(1000, 1000 / 60),
+}</pre>
+
+                    <h4>6. How would you add Sliding Window without changing RateLimiter?</h4>
+                    <p><strong>Answer:</strong> Define a common <code>RateLimitStrategy</code> abstraction with an <code>allow()</code> operation. <code>TokenBucketStrategy</code> and <code>SlidingWindowStrategy</code> implement it. Inject the chosen strategy into <code>RateLimiter</code>. This applies OCP and Strategy pattern.</p>
+                    <pre>class RateLimitStrategy:
+    def allow(self, user_id, policy, now):
+        raise NotImplementedError
+
+class RateLimiter:
+    def __init__(self, strategy):
+        self.strategy = strategy
+
+    def allow(self, user_id, policy, now):
+        return self.strategy.allow(user_id, policy, now)</pre>
+
+                    <h4>7. What metrics would you monitor?</h4>
+                    <ul>
+                        <li>Allowed and rejected requests by user, endpoint, and plan.</li>
+                        <li>Rate-limit rejection percentage and HTTP 429 count.</li>
+                        <li>Redis latency, errors, timeouts, and memory usage.</li>
+                        <li>Hot keys, such as one abusive user or API key.</li>
+                        <li>Decision latency added by the limiter.</li>
+                        <li>Fallback-open and fallback-closed events.</li>
+                    </ul>
+
+                    <h4>Strong Interview Summary</h4>
+                    <p>"I would place the limiter at the API gateway or service boundary. I would use a Token Bucket strategy backed by Redis, with an atomic Lua script for refill and consume. The limiter would depend on abstractions for storage, policy, and strategy, allowing different algorithms and user tiers without changing the core flow. I would return 429 with Retry-After when rejected and monitor rejection rate, decision latency, and Redis health."</p>
+                </details>
+
+                <details open>
+                    <summary>Day 4 Theory: Atomicity, Redis, and Failure Handling</summary>
+                    <p><strong>Atomicity:</strong> Refill, check, decrement, and save must behave like one indivisible operation. Otherwise, two concurrent requests can both read the same token count and both receive permission.</p>
+                    <p><strong>Shared state:</strong> In-memory counters are incorrect with multiple application servers because each server sees only a fraction of the user's traffic. Redis provides a shared state store.</p>
+                    <p><strong>Redis Lua script:</strong> Put the token-bucket calculation inside one server-side script. Redis executes the script atomically relative to other Redis commands.</p>
+                    <pre>state = redis.get(user_key)
+tokens, last_refill = state or (capacity, now)
+tokens = min(capacity, tokens + (now - last_refill) * refill_rate)
+
+if tokens >= 1:
+    tokens -= 1
+    redis.set(user_key, tokens, now)
+    return ALLOW
+
+return REJECT</pre>
+                    <p><strong>Failure policy:</strong> Fail closed for payments, authentication, or abuse-sensitive APIs. Fail open briefly for low-risk read APIs when availability is more important than strict enforcement.</p>
+                    <p><strong>Observability:</strong> Monitor allowed/rejected requests, 429 percentage, Redis latency/errors, decision latency, hot keys, and fallback events.</p>
+                    <p><strong>Interview phrase:</strong> "I would make the decision atomic, centralize state in Redis, choose failure behavior based on business risk, and monitor both enforcement quality and dependency health."</p>
+                </details>
                 
+                </details>
+
                 <h3>Classic LLD Problems (Week 2+)</h3>
                 
                 <h4>Week 2: Parking Lot System</h4>
@@ -828,6 +1008,10 @@ else:
                     <strong>Repo files:</strong><br>
                     <a href="https://github.com/PritamLeo/new_learnings_for_better_roles/blob/main/coding-mentor/HLD/README.md" target="_blank">HLD notes index</a>
                 </div>
+
+                <details class="theory-group" open>
+                    <summary>HLD Theory: Requirements, Scale, and Trade-offs</summary>
+                    <p class="theory-label">Start with the interview flow, then study infrastructure concepts before opening a case study.</p>
                 
                 <h3>HLD Interview Flow</h3>
                 <div class="card">
@@ -877,6 +1061,8 @@ else:
                     <strong>Tradeoff:</strong> Sync replication (slow, consistent) vs Async (fast, eventually consistent)
                 </div>
                 
+                </details>
+
                 <h3>Classic HLD Problems (Week 5+)</h3>
                 
                 <h4>Week 5-6: URL Shortener (TinyURL)</h4>

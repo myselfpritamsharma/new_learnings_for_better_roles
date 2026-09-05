@@ -47,6 +47,7 @@
 | 2026-08-30 | LeetCode | Valid Palindrome | Two-Pointer | Easy | 3 (skip logic, case handling, mixed char comparison) | 35 min | Solved | Clean solution; understood skip-one-at-a-time pattern; O(n) time, O(1) space |
 | 2026-08-31 | LeetCode | Longest Substring Without Repeating Characters | Sliding Window | Medium | 1 (shrink step should remove left char) | In progress | Solved | Correct sliding-window implementation; learned to remove `s[left]` when shrinking the window; O(n) time, O(k) space |
 | 2026-09-01 | LeetCode | Permutation in String | Sliding Window | Medium | 1 (delete outgoing char before moving left) | In progress | Solved | Correct fixed-size sliding window; built `need` and `window` maps and deleted zero-count keys before moving `left` |
+| 2026-09-05 | LeetCode | Longest Repeating Character Replacement | Sliding Window | Medium | 1 (update answer after shrinking) | In progress | Solved | Correct variable-size window; tracks maximum frequency and measures only after repairing an invalid window; O(n) time, O(1) space |
 
 ---
 
@@ -55,7 +56,7 @@
 | Pattern/Tag | Attempts | Solved Independently | Needed Hints | Failed/Stuck | Mastery (🔴/🟡/🟢) |
 | --- | --- | --- | --- | --- | --- |
 | Two-Pointer | 1 | 1 | 0 | 0 | 🟡 |
-| Sliding Window | 2 | 2 | 2 | 0 | 🟡 |
+| Sliding Window | 3 | 3 | 3 | 0 | 🟡 |
 | Binary Search | 0 | 0 | 0 | 0 | 🔴 |
 | Trees/BST | 0 | 0 | 0 | 0 | 🔴 |
 | Graphs (BFS/DFS) | 0 | 0 | 0 | 0 | 🔴 |

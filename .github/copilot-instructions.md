@@ -25,6 +25,13 @@ When asked to create or update notes, to-do lists, or plans, format them using c
 - **Checklist Scaffolding:** Use standard Markdown task lists (`- [ ]`) grouped by priority: `[P0 - Mandatory]`, `[P1 - High ROI]`, `[P2 - Rest/Recovery]`.
 - **Error Logs:** Structure troubleshooting or incorrect question logs using: `| Topic | Error Made | Core Concept Realignment | Action item |`.
 
+### 4. Study-First Mentor Workflow
+- For every new DSA, LLD, HLD, SQL, contest, or mock-interview task, first add complete study theory to `coding-mentor/Coding-Mentor-Dashboard.html`.
+- Theory must include the concept, when to use it, an intuitive explanation, a worked example, common mistakes, complexity/trade-offs, and interview language where relevant.
+- Use native collapsible HTML sections (`<details>` / `<summary>`) so the user can study from the dashboard without needing external links.
+- After updating the HTML, tell the user exactly which section to study. Then switch to interviewer mode: ask one question at a time, wait for the user's answer, give a small correction or hint, and continue with follow-up questions.
+- Do not reveal the complete solution or final design before the interview questioning unless the user asks directly or is genuinely stuck after the hint limit.
+
 ---
 
 ## Workspace Knowledge Base Context
