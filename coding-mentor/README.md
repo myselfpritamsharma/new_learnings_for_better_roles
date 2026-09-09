@@ -1,16 +1,24 @@
 # Career Prep Repository
 
-This repository tracks preparation for high-paying, stable technical roles across three interview tracks:
+This repository tracks preparation for GCC and Wall Street financial engineering roles in India:
 
 - DSA: coding patterns and LeetCode/NeetCode solutions
-- LLD: object-oriented design, SOLID, design patterns, and low-level design problems
-- HLD: scalable system design and distributed systems notes
+- LLD: object-oriented design, SOLID, design patterns, and backend component design
+- HLD: low-latency, high-availability, fault-tolerant system design
+- SQL/DBMS: SQL Server performance, transaction integrity, indexes, locking, and query plans
+
+## Target Roles
+
+- Senior Software Engineer / SDE-3
+- Lead Engineer
+- VP-track backend/platform engineer
+- GCC financial engineering roles at Goldman Sachs, JPMorgan, Morgan Stanley, Citi, Barclays, Deutsche Bank, Wells Fargo, Amex, Walmart Global Tech, Target, and Citadel-style teams
 
 ## Current Focus
 
 - Phase: 1
 - DSA: Two-Pointer, Sliding Window
-- LLD: SOLID principles, Rate Limiter basics
+- LLD: SOLID principles, Rate Limiter, LRU Cache
 - HLD: Foundations begin after the DSA/LLD base is stable
 
 ## Structure
