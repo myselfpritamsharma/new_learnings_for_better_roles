@@ -33,3 +33,9 @@ HLD/
 Coding-Mentor-Dashboard.html
 06-Coding-Mentor-Progress.md
 ```
+
+## Learning Roadmap
+
+View the complete Java interview, C#/.NET production, shared-foundations, DSA/CSES, LLD, and HLD flow:
+
+[Open the 12-month learning roadmap](learning-roadmap-flow.svg)
