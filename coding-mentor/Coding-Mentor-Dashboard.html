@@ -136,6 +136,11 @@
             display: none !important;
         }
 
+        #csharp > details:not(.language-checklist),
+        #java > details:not(.language-checklist) {
+            display: none !important;
+        }
+
         .tab-intro {
             background: var(--accent-soft);
             border: 1px solid #a7e8df;
@@ -702,7 +707,8 @@
                 <li><button class="tab-button" type="button" data-tab="dsa" aria-selected="false">🎯 DSA</button></li>
                 <li><button class="tab-button" type="button" data-tab="lld" aria-selected="false">🏗️ LLD</button></li>
                 <li><button class="tab-button" type="button" data-tab="hld" aria-selected="false">🌐 HLD</button></li>
-                <li><button class="tab-button" type="button" data-tab="csharp" aria-selected="false">🔷 C# Guide</button></li>
+                <li><button class="tab-button" type="button" data-tab="csharp" aria-selected="false">🔷 .NET Production Guide</button></li>
+                <li><button class="tab-button" type="button" data-tab="java" aria-selected="false">☕ Java Guide</button></li>
                 <li><button class="tab-button" type="button" data-tab="gcc-map" aria-selected="false">🏦 GCC Map</button></li>
             </ul>
         </nav>
@@ -764,7 +770,7 @@
                 </div>
 
                 <div class="highlight">
-                    <strong>Day 1 workflow:</strong> Start with the DSA checklist, choose one unchecked question, and solve it in C#/.NET. Then record the result in the browser checklist.
+                    <strong>Day 1 workflow:</strong> Start with the DSA checklist, choose one unchecked question, and solve it in Java. Then record the result in the browser checklist.
                 </div>
 
                 <div class="card">
@@ -802,7 +808,7 @@
                 <h3>Day 1 Task</h3>
                 <div class="card">
                     <strong>Status:</strong> ⏳ Day 1 reset<br>
-                    Start with one unchecked DSA question from the checklist and solve it in C#/.NET.
+                    Start with one unchecked DSA question from the checklist and solve it in Java.
                 </div>
             </section>
             
@@ -811,7 +817,7 @@
                 <h2>🎯 DSA (Data Structures & Algorithms)</h2>
 
                 <div class="tab-intro">
-                    <strong>Day 1 study order:</strong> Choose a checklist topic → pick an unchecked question → solve it in C#/.NET → mark it for review.
+                    <strong>Day 1 study order:</strong> Choose a checklist topic → pick an unchecked question → solve it in Java → mark it for review.
                 </div>
 
                 <details class="theory-group legacy-theory" open>
@@ -850,7 +856,7 @@
                     <summary>✅ DSA Checklist</summary>
                     <p class="theory-label">Interview DSA and CSES competitive-programming questions grouped by topic. Check a box after you solve it. State persists in this browser.</p>
                     <p class="checklist-legend">Legend: checked box = solved and reviewed. Ask the mentor to add a new question after you attempt it.</p>
-                    <p class="theory-label">CSES source: <a href="https://cses.fi/problemset/" target="_blank" rel="noopener">CSES Problem Set</a>. The complete official catalog loads at startup and merges into these DSA topics. Solve in C#/.NET, record complexity, and test locally before submitting.</p>
+                    <p class="theory-label">CSES source: <a href="https://cses.fi/problemset/" target="_blank" rel="noopener">CSES Problem Set</a>. The complete official catalog loads at startup and merges into these DSA topics. Solve in Java, use fast I/O, record complexity, and test locally before submitting.</p>
                     <p class="checklist-legend">Contest workflow: understand constraints → derive the invariant → implement fast I/O and the right data structure → test edge cases → submit → record the failure pattern.</p>
 
                     <details>
@@ -1997,11 +2003,28 @@ return REJECT</pre>
 
             <!-- C# GUIDE SECTION -->
             <section id="csharp" class="tab-panel">
-                <h2>🔷 C# / .NET Interview Guide</h2>
+                <h2>🔷 .NET Production Guide</h2>
 
                 <div class="tab-intro">
-                    <strong>Why this tab exists:</strong> Primary interview language is now C# (matches the existing .NET background and mirrors Java closely). Master this tab first — syntax, collections, OOP idioms, and concurrency primitives — before switching LeetCode/LLD/HLD practice over from Python to C#.
+                    <strong>Production-depth track:</strong> Use this tab to deepen CLR/GC behavior, async/await, ASP.NET Core, concurrency, SQL Server, observability, and production architecture. Java is the primary interview-coding language.
                 </div>
+
+                <details class="theory-group language-checklist" open>
+                    <summary>✅ .NET Production Guide Checklist</summary>
+                    <p class="checklist-legend">Check a topic after studying it. Progress is stored in this browser.</p>
+                    <ul class="checklist">
+                        <li><label><input type="checkbox" data-key="dotnet-clr-gc-memory"> CLR, GC, Managed Memory, Boxing, Span&lt;T&gt;, and Memory&lt;T&gt;</label></li>
+                        <li><label><input type="checkbox" data-key="dotnet-async-await-tasks"> async/await, Task, ValueTask, CancellationToken, and ThreadPool</label></li>
+                        <li><label><input type="checkbox" data-key="dotnet-aspnet-core"> ASP.NET Core, Kestrel, Middleware, Routing, DI, and APIs</label></li>
+                        <li><label><input type="checkbox" data-key="dotnet-concurrency"> C# Concurrency: lock, Monitor, Interlocked, Channels, TPL, and deadlocks</label></li>
+                        <li><label><input type="checkbox" data-key="dotnet-sql-server"> SQL Server: indexes, execution plans, transactions, locks, and isolation</label></li>
+                        <li><label><input type="checkbox" data-key="dotnet-observability"> Logging, Metrics, Tracing, Health Checks, and Production Diagnostics</label></li>
+                        <li><label><input type="checkbox" data-key="dotnet-clean-architecture"> Clean and Hexagonal Architecture</label></li>
+                        <li><label><input type="checkbox" data-key="dotnet-cqrs-ddd"> CQRS, Domain-Driven Design, and Aggregates</label></li>
+                        <li><label><input type="checkbox" data-key="dotnet-outbox-saga"> Outbox Pattern, Saga, Idempotency, and Reliable Events</label></li>
+                        <li><label><input type="checkbox" data-key="dotnet-resilience"> Retries, Circuit Breaker, Bulkhead, Timeouts, and Backpressure</label></li>
+                    </ul>
+                </details>
 
                 <details class="theory-group" open>
                     <summary>1. C# Syntax Fundamentals</summary>
@@ -2431,12 +2454,231 @@ public void Dfs(int r, int c, bool[,] visited, int[][] grid)
                 </details>
             </section>
 
+            <!-- JAVA GUIDE SECTION -->
+            <section id="java" class="tab-panel">
+                <h2>☕ Java Guide</h2>
+                <div class="tab-intro">
+                    <strong>Primary interview language:</strong> Use Java for DSA, CSES, LLD, LeetCode, and mock interviews. This guide is code-first and aligned with GCC and investment-banking backend roles.
+                </div>
+
+                <details class="theory-group language-checklist" open>
+                    <summary>✅ Java Interview Guide Checklist</summary>
+                    <p class="checklist-legend">Check a topic after studying it. Progress is stored in this browser.</p>
+                    <ul class="checklist">
+                        <li><label><input type="checkbox" data-key="java-core-fundamentals"> Core Java: types, operators, control flow, methods, classes, constructors, packages, exceptions, and enums</label></li>
+                        <li><label><input type="checkbox" data-key="java-oop"> OOP: encapsulation, abstraction, inheritance, polymorphism, composition, interfaces, and abstract classes</label></li>
+                        <li><label><input type="checkbox" data-key="java-collections-big-o"> Collections and Big-O: ArrayList, LinkedList, HashMap, HashSet, TreeMap, TreeSet, ArrayDeque, and PriorityQueue</label></li>
+                        <li><label><input type="checkbox" data-key="java-strings-arrays"> Strings and Arrays: String, StringBuilder, StringBuffer, char[], Arrays, sorting, and search</label></li>
+                        <li><label><input type="checkbox" data-key="java-generics"> Generics: type parameters, wildcards, extends, super, generic classes, and methods</label></li>
+                        <li><label><input type="checkbox" data-key="java-functional"> Functional Java: lambdas, functional interfaces, Optional, streams, and method references</label></li>
+                        <li><label><input type="checkbox" data-key="java-exceptions"> Exception Handling: checked/unchecked exceptions, throw/throws, custom exceptions, and try-with-resources</label></li>
+                        <li><label><input type="checkbox" data-key="java-jvm-memory"> JVM and Memory: stack, heap, metaspace, allocation, GC, JIT, class loading, equals, and hashCode</label></li>
+                        <li><label><input type="checkbox" data-key="java-concurrency"> Java Concurrency: executors, futures, synchronized, volatile, locks, atomics, latches, barriers, semaphores, and BlockingQueue</label></li>
+                        <li><label><input type="checkbox" data-key="java-io-networking"> Java I/O and Networking: files, buffered I/O, serialization, sockets, and HTTP basics</label></li>
+                        <li><label><input type="checkbox" data-key="java-modern"> Modern Java: var, records, sealed classes, pattern matching, switch expressions, and text blocks</label></li>
+                        <li><label><input type="checkbox" data-key="java-spring-boot"> Spring Boot: DI, IoC, configuration, profiles, REST, validation, errors, Actuator, and testing</label></li>
+                        <li><label><input type="checkbox" data-key="java-jpa-hibernate"> JPA/Hibernate: entities, relationships, lazy/eager loading, N+1, transactions, and locking</label></li>
+                        <li><label><input type="checkbox" data-key="java-kafka-redis"> Kafka and Redis: partitions, ordering, idempotency, DLQ, cache-aside, TTL, and atomic operations</label></li>
+                        <li><label><input type="checkbox" data-key="java-shared-foundations"> Shared Foundations: SQL, system design, cloud, security, observability, and distributed systems</label></li>
+                    </ul>
+                </details>
+
+                <details class="theory-group" open>
+                    <summary>1. Java Fundamentals</summary>
+                    <p><strong>Core order:</strong> variables and types → operators/control flow → methods → classes/objects → constructors → <code>this</code>/<code>super</code> → <code>static</code>/<code>final</code> → access modifiers → packages → exceptions → enums.</p>
+                    <pre><code>public final class User {
+    private final String name;
+
+    public User(String name) {
+        this.name = Objects.requireNonNull(name);
+    }
+
+    public String name() {
+        return name;
+    }
+}
+
+interface Repository&lt;T, ID&gt; {
+    Optional&lt;T&gt; findById(ID id);
+}</code></pre>
+                    <ul>
+                        <li>Prefer immutable objects, final fields, constructor validation, and composition.</li>
+                        <li>Know interfaces, records, enums, generics, exceptions, lambdas, streams, equals, and hashCode.</li>
+                        <li>Use records for compact immutable data carriers and interfaces for stable contracts.</li>
+                    </ul>
+                </details>
+
+                <details class="theory-group" open>
+                    <summary>2. Collections and Big-O</summary>
+                    <pre><code>List&lt;String&gt; ordered = new ArrayList&lt;&gt;();
+Set&lt;String&gt; unique = new HashSet&lt;&gt;();
+Map&lt;String, Integer&gt; counts = new HashMap&lt;&gt;();
+counts.merge("java", 1, Integer::sum);
+
+PriorityQueue&lt;Integer&gt; minHeap = new PriorityQueue&lt;&gt;();
+minHeap.offer(5);
+int smallest = minHeap.poll();</code></pre>
+                    <ul>
+                        <li>ArrayList: O(1) indexed access; middle insertion/removal is O(n).</li>
+                        <li>HashMap and HashSet: O(1) average lookup and insertion.</li>
+                        <li>TreeMap and TreeSet: O(log n), sorted keys or values.</li>
+                        <li>ArrayDeque: preferred queue/deque; PriorityQueue: O(log n) insertion/removal.</li>
+                        <li>Use StringBuilder in loops and watch boxing, nulls, mutation, and integer overflow.</li>
+                    </ul>
+                </details>
+
+                <details class="theory-group" open>
+                    <summary>2A. Strings, Arrays, Generics, and Functional Java</summary>
+                    <pre><code>List&lt;Integer&gt; values = new ArrayList&lt;&gt;();
+int[] numbers = { 3, 1, 2 };
+Arrays.sort(numbers);
+
+static &lt;T&gt; T first(List&lt;T&gt; items) {
+    return items.get(0);
+}
+
+Predicate&lt;Integer&gt; positive = value -&gt; value &gt; 0;
+Optional&lt;String&gt; name = Optional.of("Goldman");
+String joined = values.stream()
+    .filter(positive::test)
+    .map(String::valueOf)
+    .collect(Collectors.joining(","));</code></pre>
+                    <ul>
+                        <li>Know String immutability, StringBuilder/StringBuffer, char arrays, Arrays APIs, and concatenation costs.</li>
+                        <li>Understand <code>&lt;T&gt;</code>, wildcards, <code>? extends T</code>, <code>? super T</code>, generic classes, and generic methods.</li>
+                        <li>Know Predicate, Function, Consumer, Supplier, Optional, streams, and method references; prefer readable loops in timed DSA.</li>
+                    </ul>
+                </details>
+
+                <details class="theory-group" open>
+                    <summary>2B. Exceptions, I/O, Networking, and Modern Java</summary>
+                    <pre><code>try (var reader = Files.newBufferedReader(Path.of("input.txt"))) {
+    String line = reader.readLine();
+} catch (IOException error) {
+    throw new UncheckedIOException(error);
+}
+
+public sealed interface Payment permits CardPayment, WirePayment {}
+public record Money(BigDecimal amount, String currency) {}
+
+String label = switch (status) {
+    case "OK" -&gt; "accepted";
+    default -&gt; "review";
+};</code></pre>
+                    <ul>
+                        <li>Know try/catch/finally, throw/throws, checked versus unchecked exceptions, custom exceptions, and try-with-resources.</li>
+                        <li>Learn file I/O, buffered streams, serialization basics, sockets, and HTTP only to backend-interview depth.</li>
+                        <li>Recognize <code>var</code>, records, sealed classes, pattern matching, switch expressions, and text blocks.</li>
+                    </ul>
+                </details>
+
+                <details class="theory-group" open>
+                    <summary>3. Concurrency</summary>
+                    <pre><code>private final AtomicInteger requests = new AtomicInteger();
+
+public int nextRequestCount() {
+    return requests.incrementAndGet();
+}
+
+ExecutorService pool = Executors.newFixedThreadPool(4);
+CompletableFuture&lt;String&gt; result =
+    CompletableFuture.supplyAsync(this::loadData, pool)
+        .thenApply(String::trim)
+        .exceptionally(error -&gt; "fallback");</code></pre>
+                    <ul>
+                        <li>Know Thread, Runnable, Callable, ExecutorService, Future, CompletableFuture, and pool sizing.</li>
+                        <li>Understand synchronized, volatile, happens-before, atomics/CAS, locks, and ReentrantReadWriteLock.</li>
+                        <li>Use CountDownLatch, CyclicBarrier, Semaphore, BlockingQueue, and producer-consumer patterns.</li>
+                        <li>Prevent deadlock with lock ordering; discuss livelock, starvation, rejection, and backpressure.</li>
+                    </ul>
+                </details>
+
+                <details class="theory-group" open>
+                    <summary>3A. Java Persistence and Thread Safety</summary>
+                    <pre><code>@Transactional
+public void reserve(String accountId, BigDecimal amount) {
+    Account account = repository.findForUpdate(accountId);
+    account.reserve(amount);
+    repository.save(account);
+}
+
+// Shared mutable state needs an explicit invariant and synchronization strategy.
+private final ConcurrentHashMap&lt;String, Long&gt; counters = new ConcurrentHashMap&lt;&gt;();
+counters.merge("orders", 1L, Long::sum);</code></pre>
+                    <ul>
+                        <li>JPA/Hibernate: entities, relationships, lazy versus eager loading, persistence context, N+1 queries, transactions, and indexes.</li>
+                        <li>Know optimistic version checks versus pessimistic row locks and how database isolation affects concurrency.</li>
+                        <li>Use ConcurrentHashMap and atomic operations for simple state; use locks or transactions for compound invariants.</li>
+                    </ul>
+                </details>
+
+                <details class="theory-group" open>
+                    <summary>4. JVM Basics</summary>
+                    <pre><code>java -Xms512m -Xmx2g \
+     -XX:+UseG1GC \
+     -Xlog:gc*:file=gc.log \
+     -jar service.jar</code></pre>
+                    <ul>
+                        <li>Explain stack frames, heap allocation, class loading, JIT compilation, and JVM/JRE/JDK roles.</li>
+                        <li>Understand young/old generations, GC pauses, allocation pressure, and latency trade-offs.</li>
+                        <li>Use profiling, metrics, thread dumps, and GC logs before optimizing.</li>
+                        <li>Connect memory visibility and happens-before to concurrent service correctness.</li>
+                    </ul>
+                </details>
+
+                <details class="theory-group" open>
+                    <summary>5. Spring Boot, Kafka, and Redis</summary>
+                    <pre><code>@RestController
+class OrderController {
+    @PostMapping("/orders")
+    ResponseEntity&lt;Order&gt; create(@RequestBody CreateOrder command) {
+        return ResponseEntity.ok(orderService.create(command));
+    }
+}
+
+@KafkaListener(topics = "orders", groupId = "billing")
+void consume(OrderCreated event) {
+    billingService.charge(event.orderId());
+}
+
+String key = "order:" + orderId;
+redisTemplate.opsForValue().set(key, json, Duration.ofMinutes(10));</code></pre>
+                    <ul>
+                        <li>Spring Boot: dependency injection, configuration, REST/controller-service-repository boundaries, validation, transactions, and testing.</li>
+                        <li>Kafka: partitions, stable keys, consumer groups, offsets, ordering, retries, idempotency, DLQs, and consumer lag.</li>
+                        <li>Redis: cache-aside, TTL, atomic Lua operations, counters, rate limits, shared state, and failure handling.</li>
+                        <li>Apply these to financial workflows with auditability, observability, backpressure, and transaction-safe event publishing.</li>
+                    </ul>
+                </details>
+
+                <details class="theory-group" open>
+                    <summary>6. Shared Foundations and System Design</summary>
+                    <p>Learn these concepts once and apply them in both Java/Spring Boot and C#/.NET:</p>
+                    <ul>
+                        <li><strong>SQL/DBMS:</strong> joins, windows, indexes, execution plans, transactions, locks, isolation, deadlocks, partitioning, and replication.</li>
+                        <li><strong>Distributed systems:</strong> scaling, load balancing, service discovery, consistency, CAP, quorum, sharding, retries, failure detection, and backpressure.</li>
+                        <li><strong>Cloud and operations:</strong> AWS/Azure compute, storage, databases, queues, IAM, networking, metrics, traces, logs, and security.</li>
+                        <li><strong>Finance designs:</strong> trading/order management, market-data distribution, portfolio, settlement, risk checks, and price alerts.</li>
+                    </ul>
+                </details>
+
+                <div class="highlight">
+                    <strong>Shared foundations:</strong> Learn system design, SQL/DBMS, Kafka, Redis, cloud/DevOps, security, and observability once; apply the same engineering concepts in Java/Spring Boot and C#/.NET.
+                </div>
+                <p class="theory-label"><a href="./learning-roadmap-flow.svg" target="_blank" rel="noopener">Open the full 12-month learning flowchart</a></p>
+            </section>
+
             <!-- GCC QUESTION MAP SECTION -->
             <section id="gcc-map" class="tab-panel">
                 <h2>🏦 GCC Interview Question Map</h2>
 
                 <div class="tab-intro">
                     <strong>Use this tab daily:</strong> Review the pattern map, then tick the daily checklist after finishing your DSA, SQL/Core CS, and LLD/HLD blocks.
+                </div>
+
+                <div class="card">
+                    <strong>12-month learning roadmap:</strong><br>
+                    <a href="./learning-roadmap-flow.svg" target="_blank" rel="noopener">Open the Java / .NET / shared-foundations flowchart</a>
                 </div>
 
                 <details class="theory-group" open>
@@ -2461,7 +2703,7 @@ public void Dfs(int r, int c, bool[,] visited, int[][] grid)
 
                     <h3>Your Current Advantage</h3>
                     <ul>
-                        <li><strong>.NET Core + Angular + SQL Server + Node.js:</strong> directly relevant to enterprise GCC platforms.</li>
+                        <li><strong>Java/Spring Boot + .NET Core + SQL Server + Node.js:</strong> Java supports interview and finance-market alignment; .NET supports production-depth credibility. Angular remains maintenance-only.</li>
                         <li><strong>Full-stack background:</strong> useful, but resume/interview positioning should emphasize backend ownership and database performance.</li>
                         <li><strong>SQL Server experience:</strong> highly valuable for banks if you can discuss indexes, execution plans, transactions, locks, and query tuning.</li>
                     </ul>
@@ -2479,7 +2721,7 @@ public void Dfs(int r, int c, bool[,] visited, int[][] grid)
                             <tr><td>TypeScript / JavaScript</td><td>Frontend trading dashboards, client portals, Node.js internal tooling</td><td>Good for full-stack tracks; senior core-engineering interviews still test a backend/systems language</td></tr>
                         </tbody>
                     </table>
-                    <p><strong>Recommendation:</strong> Use <strong>C#</strong> for DSA and LLD rounds — syntax and collections mirror Java closely, and it matches the existing .NET/SQL Server background. Stay conversationally fluent in <strong>Java</strong> equivalents since it is the most common backend language across GCCs. C++ is a separate track for low-latency/HFT-adjacent roles only.</p>
+                    <p><strong>Recommendation:</strong> Use <strong>Java</strong> for DSA, LLD, CSES, and interview coding because it aligns with GCC and investment-banking backend roles. Use <strong>C#/.NET</strong> to demonstrate production depth across ASP.NET Core, SQL Server, concurrency, observability, and architecture. Learn system design, SQL, Kafka, Redis, cloud, security, and observability once across both ecosystems. Keep Angular maintenance-only and below 10% of preparation; C++ remains a separate HFT track.</p>
 
                     <h3>2-3 Hour Daily Operating Plan</h3>
                     <table>

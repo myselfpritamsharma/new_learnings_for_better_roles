@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 1600 1840" preserveAspectRatio="xMidYMin meet" style="display:block;max-width:100%;height:auto" role="img" aria-labelledby="title desc">
+  <title id="title">12-Month Goldman-Level Learning Roadmap</title>
+  <desc id="desc">A flowchart showing the learning path from Java foundations through DSA, CSES, LLD, backend systems, shared foundations, .NET production depth, HLD, mocks, and applications.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef6f5"/>
+      <stop offset="1" stop-color="#f8fafc"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .title { font: 800 34px Manrope, Segoe UI, sans-serif; fill: #14213d; }
+      .subtitle { font: 500 17px Manrope, Segoe UI, sans-serif; fill: #64748b; }
+      .phase { font: 800 16px Manrope, Segoe UI, sans-serif; fill: #0f766e; letter-spacing: 1px; }
+      .head { font: 800 21px Manrope, Segoe UI, sans-serif; fill: #14213d; }
+      .body { font: 500 15px Manrope, Segoe UI, sans-serif; fill: #334155; }
+      .small { font: 700 13px Manrope, Segoe UI, sans-serif; fill: #0f766e; }
+      .box { fill: #ffffff; stroke: #d9e4e2; stroke-width: 2; rx: 14; filter: url(#shadow); }
+      .java { stroke: #b45309; }
+      .shared { stroke: #1d4ed8; }
+      .dotnet { stroke: #0f766e; }
+      .checkpoint { fill: #ecfdf5; stroke: #15803d; stroke-width: 2; rx: 14; }
+      .line { fill: none; stroke: #0f766e; stroke-width: 4; marker-end: url(#arrow); }
+      .thin { fill: none; stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 7 7; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1840" fill="url(#bg)"/>
+  <text x="80" y="76" class="title">12-Month Goldman-Level Learning Flow</text>
+  <text x="80" y="110" class="subtitle">Java for interview performance | C#/.NET for production depth | Shared systems knowledge learned once</text>
+
+  <rect x="80" y="145" width="1440" height="92" class="checkpoint"/>
+  <text x="115" y="180" class="head">START: Day 1 Reset</text>
+  <text x="115" y="210" class="body">Choose one unchecked checklist question, solve in Java, record the result, and build from fundamentals.</text>
+
+  <path d="M800 237 V285 H425 V330" class="line"/>
+  <text x="90" y="305" class="phase">PHASE 1 · JAVA INTERVIEW FOUNDATION</text>
+
+  <rect x="80" y="330" width="690" height="235" class="box java"/>
+  <text x="115" y="370" class="head">Java Foundations</text>
+  <text x="115" y="405" class="body">Core Java: types, operators, control flow, methods, classes,</text>
+  <text x="115" y="430" class="body">constructors, this/super, static/final, packages, enums</text>
+  <text x="115" y="465" class="body">OOP: encapsulation, abstraction, inheritance, polymorphism,</text>
+  <text x="115" y="490" class="body">composition, interfaces, abstract classes, overloading/overriding</text>
+  <text x="115" y="525" class="small">Checkpoint: write clean Java without hesitation</text>
+
+  <rect x="830" y="330" width="690" height="235" class="box java"/>
+  <text x="865" y="370" class="head">Java Language Depth</text>
+  <text x="865" y="405" class="body">Collections: ArrayList, LinkedList, HashMap, HashSet, TreeMap,</text>
+  <text x="865" y="430" class="body">TreeSet, ArrayDeque, PriorityQueue, Arrays, Comparator, Iterator</text>
+  <text x="865" y="465" class="body">Strings/arrays, StringBuilder, generics, wildcards, lambdas,</text>
+  <text x="865" y="490" class="body">Optional, streams, exceptions, try-with-resources</text>
+  <text x="865" y="525" class="small">Checkpoint: know operations and Big-O</text>
+
+  <path d="M770 447 H830" class="line"/>
+  <text x="90" y="635" class="phase">PHASE 2 · CODING COMPETENCE</text>
+
+  <rect x="80" y="660" width="690" height="285" class="box java"/>
+  <text x="115" y="700" class="head">DSA Interview Patterns</text>
+  <text x="115" y="735" class="body">Arrays, strings, hashing, two pointers, sliding window, prefix sums</text>
+  <text x="115" y="760" class="body">Binary search, sorting, stacks, queues, deques, linked lists</text>
+  <text x="115" y="785" class="body">Trees, BST, heaps, tries, graphs, BFS, DFS, topological sort</text>
+  <text x="115" y="810" class="body">Union Find, intervals, greedy, backtracking, 1D/2D DP</text>
+  <text x="115" y="850" class="small">Every question: Easy / Medium / Hard + platform link</text>
+  <text x="115" y="880" class="small">Mixed checkpoints combine multiple patterns</text>
+
+  <rect x="830" y="660" width="690" height="285" class="box java"/>
+  <text x="865" y="700" class="head">CSES Competitive Programming</text>
+  <text x="865" y="735" class="body">All official CSES categories: Introductory, Sorting/Search, DP, Graphs</text>
+  <text x="865" y="760" class="body">Range Queries, Trees, Mathematics, Strings, Geometry</text>
+  <text x="865" y="785" class="body">Advanced Techniques, Sliding Window, Bitwise, Construction</text>
+  <text x="865" y="810" class="body">Interactive, Advanced Graphs, Counting, Additional Problems</text>
+  <text x="865" y="850" class="small">Java fast I/O + constraints-first reasoning</text>
+  <text x="865" y="880" class="small">Invariant, proof, complexity, edge cases, failure analysis</text>
+
+  <path d="M1175 565 V610 H425 V660" class="line"/>
+  <text x="90" y="1015" class="phase">PHASE 3 · SENIOR ENGINEERING CORE</text>
+
+  <rect x="80" y="1040" width="690" height="245" class="box java"/>
+  <text x="115" y="1080" class="head">LLD and Java Concurrency</text>
+  <text x="115" y="1115" class="body">OOP, SOLID, Factory, Builder, Strategy, Observer, State, Adapter</text>
+  <text x="115" y="1140" class="body">Decorator, Proxy, Command, Chain of Responsibility</text>
+  <text x="115" y="1175" class="body">ExecutorService, synchronized, volatile, locks, atomics, latches</text>
+  <text x="115" y="1200" class="body">BlockingQueue, CompletableFuture, pools, deadlocks, race conditions</text>
+  <text x="115" y="1240" class="small">Machine coding: cache, rate limiter, scheduler, queue, connection pool</text>
+
+  <rect x="830" y="1040" width="690" height="245" class="box shared"/>
+  <text x="865" y="1080" class="head">Shared Foundations</text>
+  <text x="865" y="1115" class="body">SQL/DBMS: joins, windows, indexes, plans, transactions, isolation</text>
+  <text x="865" y="1140" class="body">Kafka: partitions, ordering, offsets, groups, retries, idempotency, DLQ</text>
+  <text x="865" y="1165" class="body">Redis/cache: cache-aside, TTL, invalidation, hot keys, Lua, locks</text>
+  <text x="865" y="1190" class="body">Cloud, security, observability, microservices, reliability, backpressure</text>
+  <text x="865" y="1230" class="small">Learn once, apply across Java/Spring and C#/.NET</text>
+
+  <path d="M770 802 H830" class="line"/>
+  <text x="90" y="1355" class="phase">PHASE 4 · PRODUCTION DEPTH AND SYSTEM DESIGN</text>
+
+  <rect x="80" y="1380" width="690" height="250" class="box dotnet"/>
+  <text x="115" y="1420" class="head">C#/.NET Production Depth</text>
+  <text x="115" y="1455" class="body">CLR, GC, managed/unmanaged memory, boxing, Span&lt;T&gt;, Memory&lt;T&gt;</text>
+  <text x="115" y="1480" class="body">async/await, Task, ValueTask, CancellationToken, ThreadPool</text>
+  <text x="115" y="1515" class="body">ASP.NET Core, Kestrel, middleware, APIs, SQL Server, performance</text>
+  <text x="115" y="1540" class="body">Clean/Hexagonal Architecture, CQRS, DDD, outbox, saga, resilience</text>
+  <text x="115" y="1580" class="small">Use for production credibility and project deep dives</text>
+
+  <rect x="830" y="1380" width="690" height="250" class="box shared"/>
+  <text x="865" y="1420" class="head">HLD and Distributed Systems</text>
+  <text x="865" y="1455" class="body">HTTP/REST/gRPC, auth, pagination, idempotency, retries, timeouts</text>
+  <text x="865" y="1480" class="body">Scaling, load balancing, service discovery, replication, sharding</text>
+  <text x="865" y="1515" class="body">CAP, consistency, quorum, consensus basics, failure detection</text>
+  <text x="865" y="1540" class="body">Finance designs: trading, orders, market data, portfolio, settlement, risk</text>
+  <text x="865" y="1580" class="small">Requirements → scale → APIs → data → architecture → failure → security</text>
+
+  <path d="M1175 945 V990 H425 V1040" class="line"/>
+  <path d="M770 1162 H830" class="line"/>
+  <path d="M1175 1285 V1330 H425 V1380" class="line"/>
+  <path d="M770 1505 H830" class="line"/>
+  <path d="M1175 1630 V1670 H800" class="line"/>
+  <rect x="80" y="1700" width="1440" height="88" class="checkpoint"/>
+  <text x="115" y="1735" class="head">END STATE: Goldman-or-Better Senior Engineer</text>
+  <text x="115" y="1765" class="body">Java interview-ready | C#/.NET production expert | Distributed Systems | Cloud | Kafka | SQL | System Design</text>
+</svg>
