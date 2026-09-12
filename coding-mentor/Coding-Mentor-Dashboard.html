@@ -130,6 +130,12 @@
             display: none !important;
         }
 
+        #dsa > details.legacy-theory,
+        #lld > details.legacy-theory,
+        #hld > details.legacy-theory {
+            display: none !important;
+        }
+
         .tab-intro {
             background: var(--accent-soft);
             border: 1px solid #a7e8df;
@@ -310,16 +316,6 @@
             margin-left: 8px;
         }
 
-        details.solution-group {
-            background: var(--green-soft);
-            border: 1px solid #a7e8b9;
-            border-left: 6px solid var(--green);
-        }
-
-        details.solution-group > summary {
-            color: #14532d;
-        }
-
         .theory-label {
             color: #6b7280;
             font-size: 0.85em;
@@ -341,15 +337,13 @@
             color: var(--accent);
         }
 
-        details.theory-group > summary,
-        details.solution-group > summary {
+        details.theory-group > summary {
             align-items: center;
             display: flex;
             gap: 10px;
         }
 
-        details.theory-group > summary::before,
-        details.solution-group > summary::before {
+        details.theory-group > summary::before {
             border-radius: 999px;
             content: "Study";
             display: inline-flex;
@@ -363,12 +357,6 @@
         details.theory-group > summary::before {
             background: var(--accent-soft);
             color: var(--accent-dark);
-        }
-
-        details.solution-group > summary::before {
-            background: #bbf7d0;
-            color: #14532d;
-            content: "Solution";
         }
 
         details[open] summary {
@@ -566,6 +554,43 @@
             white-space: nowrap;
         }
 
+        .checklist-platform-link {
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-left: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .question-level,
+        .mixed-topic-label {
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-left: 0.5rem;
+            padding: 0.15rem 0.45rem;
+            white-space: nowrap;
+        }
+
+        .question-level-easy {
+            background: var(--green-soft);
+            color: var(--green);
+        }
+
+        .question-level-medium {
+            background: var(--amber-soft);
+            color: var(--amber);
+        }
+
+        .question-level-hard {
+            background: #ffe0e0;
+            color: #a62929;
+        }
+
+        .mixed-topic-label {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
         .checklist-progress {
             color: var(--muted);
             font-size: 0.8rem;
@@ -739,7 +764,7 @@
                 </div>
 
                 <div class="highlight">
-                    <strong>Study-first workflow:</strong> Read the theory in the DSA, LLD, or HLD tab before attempting a task. Then answer interviewer questions one at a time in chat. This tab records every day in order.
+                    <strong>Day 1 workflow:</strong> Start with the DSA checklist, choose one unchecked question, and solve it in C#/.NET. Then record the result in the browser checklist.
                 </div>
 
                 <div class="card">
@@ -776,8 +801,8 @@
 
                 <h3>Day 1 Task</h3>
                 <div class="card">
-                    <strong>Status:</strong> ⏳ Not yet assigned<br>
-                    Ask the mentor for today's task to get your first DSA/LLD/SQL assignment. Theory for previously covered topics (SOLID, Rate Limiter, Sliding Window, Two-Pointer, LRU Cache, Parking Lot, C# Guide) is still available in the DSA/LLD/HLD/C# Guide tabs for reference and re-study.
+                    <strong>Status:</strong> ⏳ Day 1 reset<br>
+                    Start with one unchecked DSA question from the checklist and solve it in C#/.NET.
                 </div>
             </section>
             
@@ -786,10 +811,10 @@
                 <h2>🎯 DSA (Data Structures & Algorithms)</h2>
 
                 <div class="tab-intro">
-                    <strong>Study order:</strong> Learn the pattern → review its problem list → study theory → attempt the problem → open the solution only after trying.
+                    <strong>Day 1 study order:</strong> Choose a checklist topic → pick an unchecked question → solve it in C#/.NET → mark it for review.
                 </div>
 
-                <details class="theory-group" open>
+                <details class="theory-group legacy-theory" open>
                     <summary>DSA Problem Study Format</summary>
                     <p class="theory-label">Every new problem will be added using all of these sections.</p>
                     <ol>
@@ -805,7 +830,7 @@
                     </ol>
                 </details>
 
-                <details class="theory-group" open>
+                <details class="theory-group legacy-theory" open>
                     <summary>1. DSA Patterns</summary>
                     <p class="theory-label">Learn the pattern before opening individual problems.</p>
                     <table>
@@ -821,10 +846,12 @@
                     </table>
                 </details>
 
-                <details class="theory-group" open>
-                    <summary>✅ DSA Question Checklist (GCC Master List)</summary>
-                    <p class="theory-label">Sourced from GCC_Interview_Questions.txt. Check a box after you solve it. State persists in this browser. Solved items link straight to their solution.</p>
-                    <p class="checklist-legend">Legend: checked box = solved and reviewed. Ask the mentor "add solution for &lt;question&gt;" after solving a new one, and a link will be added here.</p>
+                <details class="theory-group checklist-container" open>
+                    <summary>✅ DSA Checklist</summary>
+                    <p class="theory-label">Interview DSA and CSES competitive-programming questions grouped by topic. Check a box after you solve it. State persists in this browser.</p>
+                    <p class="checklist-legend">Legend: checked box = solved and reviewed. Ask the mentor to add a new question after you attempt it.</p>
+                    <p class="theory-label">CSES source: <a href="https://cses.fi/problemset/" target="_blank" rel="noopener">CSES Problem Set</a>. The complete official catalog loads at startup and merges into these DSA topics. Solve in C#/.NET, record complexity, and test locally before submitting.</p>
+                    <p class="checklist-legend">Contest workflow: understand constraints → derive the invariant → implement fast I/O and the right data structure → test edge cases → submit → record the failure pattern.</p>
 
                     <details>
                         <summary>Arrays / Strings / HashMap</summary>
@@ -965,7 +992,7 @@
                     </details>
 
                     <details>
-                        <summary>Sorting / Searching / Binary Search</summary>
+                        <summary>Sorting / Searching / Binary Search / Range Queries</summary>
                         <ul class="checklist">
                             <li><label><input type="checkbox" data-key="dsa-search-rotated-sorted-array"> Search in Rotated Sorted Array</label></li>
                             <li><label><input type="checkbox" data-key="dsa-find-peak-element"> Find Peak Element</label></li>
@@ -977,6 +1004,20 @@
                             <li><label><input type="checkbox" data-key="dsa-kth-smallest-sorted-matrix"> Kth Smallest Element in a Sorted Matrix</label></li>
                             <li><label><input type="checkbox" data-key="dsa-capacity-ship-packages"> Capacity to Ship Packages Within D Days</label></li>
                             <li><label><input type="checkbox" data-key="dsa-find-min-rotated-sorted-array"> Find Minimum in Rotated Sorted Array</label></li>
+                        </ul>
+                    </details>
+
+                    <details>
+                        <summary>Advanced Fusion Patterns</summary>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" data-key="dsa-fusion-lru-lfu-ttl-median"> Time-Series Price Cache: HashMap + Doubly Linked List + Min-Heap + Sliding Median</label></li>
+                            <li><label><input type="checkbox" data-key="dsa-fusion-segment-tree-trade-stream"> Streaming Trade Range Sums: Segment Tree / Fenwick Tree + HashMap</label></li>
+                            <li><label><input type="checkbox" data-key="dsa-fusion-monotonic-deque-window"> Longest Bounded Subarray: Monotonic Deque + Sliding Window + HashMap</label></li>
+                            <li><label><input type="checkbox" data-key="dsa-fusion-trie-grid-search"> Forbidden-Phrase Grid Search: Trie + Backtracking + Matrix DFS</label></li>
+                            <li><label><input type="checkbox" data-key="dsa-fusion-constrained-dijkstra"> Risk-Aware Currency Routing: Modified Dijkstra + HashMap + DP</label></li>
+                            <li><label><input type="checkbox" data-key="dsa-fusion-dsu-settlement-cycle"> Settlement Cycle Detection: Union-Find + Cycle Detection + Kruskal Processing</label></li>
+                            <li><label><input type="checkbox" data-key="dsa-fusion-sliding-window-top-k"> Streaming Top-K Symbols: Sliding Window + Dual Heaps + HashMap</label></li>
+                            <li><label><input type="checkbox" data-key="dsa-fusion-sweep-line-bond-overlap"> Peak Bond Overlap: Sweep Line + Priority Queue</label></li>
                         </ul>
                     </details>
 
@@ -1020,9 +1061,121 @@
                             <li><label><input type="checkbox" data-key="dsa-find-duplicate-number"> Find the Duplicate Number</label></li>
                         </ul>
                     </details>
+                    <details>
+                        <summary>Introductory Problems</summary>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" data-key="cses-weird-algorithm"> Weird Algorithm</label></li>
+                            <li><label><input type="checkbox" data-key="cses-missing-number"> Missing Number</label></li>
+                            <li><label><input type="checkbox" data-key="cses-repetitions"> Repetitions</label></li>
+                            <li><label><input type="checkbox" data-key="cses-increasing-array"> Increasing Array</label></li>
+                            <li><label><input type="checkbox" data-key="cses-permutations"> Permutations</label></li>
+                            <li><label><input type="checkbox" data-key="cses-number-spiral"> Number Spiral</label></li>
+                            <li><label><input type="checkbox" data-key="cses-two-knights"> Two Knights</label></li>
+                            <li><label><input type="checkbox" data-key="cses-two-sets"> Two Sets</label></li>
+                            <li><label><input type="checkbox" data-key="cses-bit-strings"> Bit Strings</label></li>
+                            <li><label><input type="checkbox" data-key="cses-coin-piles"> Coin Piles</label></li>
+                            <li><label><input type="checkbox" data-key="cses-creating-strings"> Creating Strings</label></li>
+                            <li><label><input type="checkbox" data-key="cses-apple-division"> Apple Division</label></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Sorting and Searching</summary>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" data-key="cses-distinct-numbers"> Distinct Numbers</label></li>
+                            <li><label><input type="checkbox" data-key="cses-apartments"> Apartments</label></li>
+                            <li><label><input type="checkbox" data-key="cses-ferris-wheel"> Ferris Wheel</label></li>
+                            <li><label><input type="checkbox" data-key="cses-concert-tickets"> Concert Tickets</label></li>
+                            <li><label><input type="checkbox" data-key="cses-restaurant-customers"> Restaurant Customers</label></li>
+                            <li><label><input type="checkbox" data-key="cses-movie-festival"> Movie Festival</label></li>
+                            <li><label><input type="checkbox" data-key="cses-sum-of-two-values"> Sum of Two Values</label></li>
+                            <li><label><input type="checkbox" data-key="cses-maximum-subarray-sum"> Maximum Subarray Sum</label></li>
+                            <li><label><input type="checkbox" data-key="cses-stick-lengths"> Stick Lengths</label></li>
+                            <li><label><input type="checkbox" data-key="cses-missing-coin-sum"> Missing Coin Sum</label></li>
+                            <li><label><input type="checkbox" data-key="cses-collecting-numbers"> Collecting Numbers</label></li>
+                            <li><label><input type="checkbox" data-key="cses-playlist"> Playlist</label></li>
+                            <li><label><input type="checkbox" data-key="cses-towers"> Towers</label></li>
+                            <li><label><input type="checkbox" data-key="cses-traffic-lights"> Traffic Lights</label></li>
+                            <li><label><input type="checkbox" data-key="cses-subarray-sums-i"> Subarray Sums I</label></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Dynamic Programming</summary>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" data-key="cses-dice-combinations"> Dice Combinations</label></li>
+                            <li><label><input type="checkbox" data-key="cses-minimizing-coins"> Minimizing Coins</label></li>
+                            <li><label><input type="checkbox" data-key="cses-coin-combinations-i"> Coin Combinations I</label></li>
+                            <li><label><input type="checkbox" data-key="cses-coin-combinations-ii"> Coin Combinations II</label></li>
+                            <li><label><input type="checkbox" data-key="cses-removing-digits"> Removing Digits</label></li>
+                            <li><label><input type="checkbox" data-key="cses-grid-paths-i"> Grid Paths I</label></li>
+                            <li><label><input type="checkbox" data-key="cses-book-shop"> Book Shop</label></li>
+                            <li><label><input type="checkbox" data-key="cses-array-description"> Array Description</label></li>
+                            <li><label><input type="checkbox" data-key="cses-edit-distance"> Edit Distance</label></li>
+                            <li><label><input type="checkbox" data-key="cses-rectangle-cutting"> Rectangle Cutting</label></li>
+                            <li><label><input type="checkbox" data-key="cses-money-sums"> Money Sums</label></li>
+                            <li><label><input type="checkbox" data-key="cses-projects"> Projects</label></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Graph Algorithms</summary>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" data-key="cses-counting-rooms"> Counting Rooms</label></li>
+                            <li><label><input type="checkbox" data-key="cses-labyrinth"> Labyrinth</label></li>
+                            <li><label><input type="checkbox" data-key="cses-building-roads"> Building Roads</label></li>
+                            <li><label><input type="checkbox" data-key="cses-message-route"> Message Route</label></li>
+                            <li><label><input type="checkbox" data-key="cses-building-teams"> Building Teams</label></li>
+                            <li><label><input type="checkbox" data-key="cses-round-trip"> Round Trip</label></li>
+                            <li><label><input type="checkbox" data-key="cses-monsters"> Monsters</label></li>
+                            <li><label><input type="checkbox" data-key="cses-shortest-routes-i"> Shortest Routes I</label></li>
+                            <li><label><input type="checkbox" data-key="cses-flight-discount"> Flight Discount</label></li>
+                            <li><label><input type="checkbox" data-key="cses-cycle-finding"> Cycle Finding</label></li>
+                            <li><label><input type="checkbox" data-key="cses-course-schedule"> Course Schedule</label></li>
+                            <li><label><input type="checkbox" data-key="cses-road-reparation"> Road Reparation</label></li>
+                            <li><label><input type="checkbox" data-key="cses-road-construction"> Road Construction</label></li>
+                            <li><label><input type="checkbox" data-key="cses-giant-pizza"> Giant Pizza</label></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Sorting / Searching / Binary Search / Range Queries</summary>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" data-key="cses-static-range-sum-queries"> Static Range Sum Queries</label></li>
+                            <li><label><input type="checkbox" data-key="cses-static-range-minimum-queries"> Static Range Minimum Queries</label></li>
+                            <li><label><input type="checkbox" data-key="cses-dynamic-range-sum-queries"> Dynamic Range Sum Queries</label></li>
+                            <li><label><input type="checkbox" data-key="cses-dynamic-range-minimum-queries"> Dynamic Range Minimum Queries</label></li>
+                            <li><label><input type="checkbox" data-key="cses-range-xor-queries"> Range Xor Queries</label></li>
+                            <li><label><input type="checkbox" data-key="cses-forest-queries"> Forest Queries</label></li>
+                            <li><label><input type="checkbox" data-key="cses-hotel-queries"> Hotel Queries</label></li>
+                            <li><label><input type="checkbox" data-key="cses-subarray-sum-queries"> Subarray Sum Queries</label></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Tree Algorithms</summary>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" data-key="cses-subordinates"> Subordinates</label></li>
+                            <li><label><input type="checkbox" data-key="cses-tree-matching"> Tree Matching</label></li>
+                            <li><label><input type="checkbox" data-key="cses-tree-diameter"> Tree Diameter</label></li>
+                            <li><label><input type="checkbox" data-key="cses-tree-distances-i"> Tree Distances I</label></li>
+                            <li><label><input type="checkbox" data-key="cses-company-queries-i"> Company Queries I</label></li>
+                            <li><label><input type="checkbox" data-key="cses-distance-queries"> Distance Queries</label></li>
+                            <li><label><input type="checkbox" data-key="cses-subtree-queries"> Subtree Queries</label></li>
+                            <li><label><input type="checkbox" data-key="cses-finding-a-centroid"> Finding a Centroid</label></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Mathematics and String Algorithms</summary>
+                        <ul class="checklist">
+                            <li><label><input type="checkbox" data-key="cses-josephus-queries"> Josephus Queries</label></li>
+                            <li><label><input type="checkbox" data-key="cses-exponentiation"> Exponentiation</label></li>
+                            <li><label><input type="checkbox" data-key="cses-counting-divisors"> Counting Divisors</label></li>
+                            <li><label><input type="checkbox" data-key="cses-common-divisors"> Common Divisors</label></li>
+                            <li><label><input type="checkbox" data-key="cses-word-combinations"> Word Combinations</label></li>
+                            <li><label><input type="checkbox" data-key="cses-string-matching"> String Matching</label></li>
+                            <li><label><input type="checkbox" data-key="cses-finding-borders"> Finding Borders</label></li>
+                            <li><label><input type="checkbox" data-key="cses-minimal-rotation"> Minimal Rotation</label></li>
+                        </ul>
+                    </details>
                 </details>
 
-                <details class="theory-group" open>
+                <details class="theory-group legacy-theory" open>
                     <summary>2. Pattern: Two-Pointer</summary>
                     <p class="theory-label">Problems first, then theory.</p>
                     <h3>Problems</h3>
@@ -1065,7 +1218,7 @@ return cleaned == cleaned[::-1]</pre>
                     </details>
                 </details>
 
-                <details class="theory-group" open>
+                <details class="theory-group legacy-theory" open>
                     <summary>3. Pattern: Sliding Window</summary>
                     <p class="theory-label">Problems first, then theory.</p>
                     <h3>Problems</h3>
@@ -1171,7 +1324,7 @@ return cleaned == cleaned[::-1]</pre>
                     </details>
                 </details>
 
-                <details class="theory-group">
+                <details class="theory-group legacy-theory">
                     <summary>4. Upcoming DSA Patterns</summary>
                     <ul>
                         <li><strong>Binary Search:</strong> Search Rotated Sorted Array, Koko Eating Bananas</li>
@@ -1181,7 +1334,7 @@ return cleaned == cleaned[::-1]</pre>
                     </ul>
                 </details>
 
-                <details class="theory-group">
+                <details class="theory-group legacy-theory">
                     <summary>5. Advanced Fusion Patterns (Stretch Goals, Not Weeks 1-8)</summary>
                     <p class="theory-label">Goldman/Citadel-tier rounds increasingly fuse 2-3 structures into one problem instead of testing a single concept. Study these AFTER the base patterns above are solid — they build on, not replace, the fundamentals.</p>
 
@@ -1339,44 +1492,8 @@ return cleaned == cleaned[::-1]</pre>
 
                 </div>
                 
-                <h3>Pattern 5: Graphs (BFS/DFS)</h3>
-                <div class="card">
-                    <strong>Idea:</strong> Traverse graphs for connectivity (DFS) or shortest paths (BFS). O(V + E).<br>
-                    <strong>Problems:</strong> Number of Islands, Clone Graph, Course Schedule, Topological Sort<br>
-                    <strong>Key:</strong> BFS for shortest path (queue). DFS for connectivity/cycles (stack/recursion).<br>
-                    <strong>Status:</strong> <span class="pattern-badge">🔴 Red (Not started)</span>
-                </div>
-                
-                <h3>Pattern 6: Dynamic Programming</h3>
-                <div class="card">
-                    <strong>Idea:</strong> Break into overlapping subproblems; memoize to avoid recalculation.<br>
-                    <strong>Problems:</strong> House Robber, LCS, Edit Distance, Knapsack, Coin Change<br>
-                    <strong>Key:</strong> Identify state transitions. Start recursive + memoization, optimize to DP table.<br>
-                    <strong>Status:</strong> <span class="pattern-badge">🔴 Red (Not started)</span>
-                </div>
-                
                 </details>
 
-                <h3>Problems Solved</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Problem</th>
-                            <th>Pattern</th>
-                            <th>Difficulty</th>
-                            <th>Hints</th>
-                            <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="6">No problems logged yet. Start with a fresh attempt and record the result here.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <p class="timestamp">Updated after each DSA problem | Target: 1-2 problems/day during phase 1</p>
             </section>
             
             <!-- LLD SECTION -->
@@ -1384,23 +1501,13 @@ return cleaned == cleaned[::-1]</pre>
                 <h2>🏗️ LLD (Low-Level Design)</h2>
 
                 <div class="tab-intro">
-                    <strong>Study this tab:</strong> SOLID, design patterns, Rate Limiter theory, and interview-ready design answers.
+                    <strong>Day 1 focus:</strong> Work through the LLD checklist questions one at a time.
                 </div>
                 
-                <div class="highlight">
-                    <strong>Why LLD is the differentiator:</strong> LLD separates ₹45L–₹65L candidates. Goldman, Salesforce, ServiceNow all test LLD heavily. Master SOLID principles, apply them in 8+ classic problems (Parking Lot, Rate Limiter, Cache, Logger, etc.), and you'll dominate this round.
-                </div>
-
-                <div class="card">
-                    <strong>LLD reference notes:</strong><br>
-                    <a href="https://github.com/myselfpritamsharma/new_learnings_for_better_roles/blob/main/coding-mentor/SOLID-Principles-Notes.md" target="_blank">SOLID Principles notes</a><br>
-                    <a href="https://github.com/myselfpritamsharma/new_learnings_for_better_roles/blob/main/coding-mentor/LLD/rate-limiter/algorithm-choice.md" target="_blank">Rate Limiter algorithm choice</a>
-                </div>
-
-                <details class="theory-group" open>
+                <details class="theory-group checklist-container" open>
                     <summary>✅ LLD Question Checklist (GCC Master List)</summary>
                     <p class="theory-label">Sourced from GCC_Interview_Questions.txt Section 3. Check a box once you've designed the system end-to-end with requirements, entities, and trade-offs.</p>
-                    <p class="checklist-legend">Legend: checked box = designed and reviewed with the mentor. Ask "add solution for &lt;system&gt;" after finishing a new one.</p>
+                    <p class="checklist-legend">Legend: checked box = designed and reviewed with the mentor. Start with an unchecked design question.</p>
                     <ul class="checklist">
                         <li><label><input type="checkbox" data-key="lld-parking-lot"> Parking Lot</label></li>
                         <li><label><input type="checkbox" data-key="lld-vending-machine"> Vending Machine</label></li>
@@ -1442,9 +1549,9 @@ return cleaned == cleaned[::-1]</pre>
                     </ul>
                 </details>
 
-                <details class="theory-group" open>
+                <details class="theory-group legacy-theory" open>
                     <summary>LLD Theory: SOLID, Rate Limiter, and Interview Design</summary>
-                    <p class="theory-label">Study the principles first, then open the Rate Limiter design and interview answers.</p>
+                    <p class="theory-label">Study the principles and requirements before attempting the Rate Limiter checklist question.</p>
                 
                 <details class="theory-group" open>
                     <summary>SOLID Principles (The Foundation)</summary>
@@ -1554,7 +1661,7 @@ class UserService:
                 </details>
 
                 <details class="theory-group" open>
-                    <summary>Rate Limiter (Theory + Interview Questions)</summary>
+                    <summary>Rate Limiter Theory</summary>
 
                     <details open>
                         <summary>Rate Limiter Basics: What Problem Are We Solving?</summary>
@@ -1615,17 +1722,6 @@ else:
                         <p><strong>Pros:</strong> Smooth output rate. Good when downstream systems need predictable traffic.</p>
                         <p><strong>Cons:</strong> Queueing adds latency. Less natural if you simply want allow/reject at the API edge.</p>
                         <p><strong>Use when:</strong> You need to smooth traffic before sending to a downstream service.</p>
-                    </details>
-
-                    <details>
-                        <summary>Recommended Answer For 100 Requests/Minute/User</summary>
-                        <p><strong>Pick Token Bucket</strong> for a product/backend interview unless exact fairness is explicitly required.</p>
-                        <ul>
-                            <li>It allows small bursts, which is practical for real users and services.</li>
-                            <li>It is memory efficient: store <code>tokens</code> and <code>last_refill_time</code> per user.</li>
-                            <li>It works well with Redis for distributed rate limiting.</li>
-                        </ul>
-                        <p><strong>Tradeoff to mention:</strong> If strict accuracy is required, use Sliding Window Log or Sliding Window Counter, but memory and complexity increase.</p>
                     </details>
 
                     <details open>
@@ -1749,80 +1845,6 @@ return REJECT</pre>
 
                 </details>
 
-                <h3>Classic LLD Problems (Week 2+)</h3>
-                
-                <h4>Week 2: Parking Lot System</h4>
-                <div class="card">
-                    <strong>Concepts:</strong> Inheritance, composition, state management<br>
-                    <strong>Classes:</strong> ParkingLot, Level, ParkingSpot, Vehicle, ParkingTicket<br>
-                    <strong>Interview Value:</strong> "I modeled the domain using proper OOP, ensured each class has a single responsibility."
-                </div>
-                
-                <h4>Week 3: Rate Limiter</h4>
-                <div class="card">
-                    <strong>Concepts:</strong> Strategy pattern, sliding window, token bucket<br>
-                    <strong>Algorithms:</strong> Token Bucket, Sliding Window, Leaky Bucket, Fixed Window<br>
-                    <strong>Interview Value:</strong> "I implemented multiple algorithms using strategy pattern so they're pluggable without changing core logic."
-                </div>
-                
-                <h4>Week 4: LRU/LFU Cache</h4>
-                <div class="card">
-                    <strong>Concepts:</strong> HashMap + LinkedList, eviction policies, space/time tradeoffs<br>
-                    <strong>Trade-offs:</strong> LRU vs LFU accuracy, memory overhead<br>
-                    <strong>Interview Value:</strong> "I used OCP to make eviction policy pluggable; designed for O(1) get/put using HashMap + DoublyLinkedList."
-                </div>
-                
-                <h4>Week 5: Notification Service</h4>
-                <div class="card">
-                    <strong>Concepts:</strong> Chain of Responsibility, Factory, Observer<br>
-                    <strong>Features:</strong> Multiple channels (Email, SMS, Push), retry logic, rate limiting<br>
-                    <strong>Interview Value:</strong> "I separated concerns: builders, channels, retry strategies using factory and chain of responsibility."
-                </div>
-                
-                <h3>Design Patterns Reference</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Pattern</th>
-                            <th>Use Case</th>
-                            <th>LLD Problem</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Strategy</strong></td>
-                            <td>Swappable algorithms</td>
-                            <td>Rate Limiter (algorithms), Cache (eviction)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Factory</strong></td>
-                            <td>Object creation logic</td>
-                            <td>Logger types, Notifier channels</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Singleton</strong></td>
-                            <td>Single instance globally</td>
-                            <td>Database connection, Logger instance</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Observer</strong></td>
-                            <td>Event listeners</td>
-                            <td>Notification system, cache updates</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Chain of Responsibility</strong></td>
-                            <td>Pass request through chain</td>
-                            <td>Log level handlers, approval workflows</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Decorator</strong></td>
-                            <td>Add functionality dynamically</td>
-                            <td>Logging/caching wrappers around API calls</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <p class="timestamp">Master SOLID by week 2; solve 8+ classic problems weeks 2–10 applying these principles</p>
             </section>
             
             <!-- HLD SECTION -->
@@ -1830,22 +1852,13 @@ return REJECT</pre>
                 <h2>🌐 HLD (High-Level Design)</h2>
 
                 <div class="tab-intro">
-                    <strong>Study this tab:</strong> Requirements, scale, architecture components, and system design trade-offs.
+                    <strong>Day 1 focus:</strong> Work through the HLD checklist questions one at a time.
                 </div>
                 
-                <div class="highlight">
-                    <strong>This is your GCC multiplier.</strong> HLD tests architectural thinking at scale: low-latency APIs, high availability, transaction integrity, database consistency, fault tolerance, and audit-ready operations. GCC and Wall Street engineering teams use these rounds to judge seniority and production maturity.
-                </div>
-
-                <div class="card">
-                    <strong>Repo files:</strong><br>
-                    <a href="https://github.com/myselfpritamsharma/new_learnings_for_better_roles/blob/main/coding-mentor/HLD/README.md" target="_blank">HLD notes index</a>
-                </div>
-
-                <details class="theory-group" open>
+                <details class="theory-group checklist-container" open>
                     <summary>✅ HLD Question Checklist (GCC Master List)</summary>
                     <p class="theory-label">Sourced from GCC_Interview_Questions.txt Section 4. Check a box once you can walk through requirements, scale estimates, components, and trade-offs end-to-end.</p>
-                    <p class="checklist-legend">Legend: none solved yet. Ask "add solution for &lt;system&gt;" after designing one with the mentor, and a link will be added here.</p>
+                    <p class="checklist-legend">Legend: none solved yet. Start with an unchecked design question.</p>
                     <ul class="checklist">
                         <li><label><input type="checkbox" data-key="hld-url-shortener"> URL Shortener</label></li>
                         <li><label><input type="checkbox" data-key="hld-rate-limiter"> Rate Limiter (distributed)</label></li>
@@ -1892,7 +1905,7 @@ return REJECT</pre>
                     </ul>
                 </details>
 
-                <details class="theory-group" open>
+                <details class="theory-group legacy-theory" open>
                     <summary>HLD Theory: Requirements, Scale, and Trade-offs</summary>
                     <p class="theory-label">Start with the interview flow, then study infrastructure concepts before opening a case study.</p>
                 
@@ -1946,7 +1959,7 @@ return REJECT</pre>
 
                 </details>
 
-                <details class="theory-group" open>
+                <details class="theory-group legacy-theory" open>
                     <summary>Event-Driven Architecture, Low-Latency Tuning, and DB Concurrency</summary>
                     <p class="theory-label">Senior GCC backend rounds probe production-grade trade-offs beyond the standard HLD checklist.</p>
 
@@ -1980,79 +1993,6 @@ return REJECT</pre>
                     </details>
                 </details>
 
-                <h3>Classic HLD Problems (Week 5+)</h3>
-                
-                <h4>Week 5-6: URL Shortener (TinyURL)</h4>
-                <div class="card">
-                    <strong>Scale:</strong> 1M writes/sec, 10M reads/sec<br>
-                    <strong>Components:</strong> API Gateway, ID generator (Snowflake/UUID), Sharded DB, Cache<br>
-                    <strong>Design Decisions:</strong> Use consistent hashing for ID generation; Redis for hot URL caching; SQL for persistence<br>
-                    <strong>Interview Gold:</strong> "I used Snowflake ID generator for distributed unique IDs and Redis for cache with TTL."
-                </div>
-                
-                <h4>Week 6-7: Distributed Logger</h4>
-                <div class="card">
-                    <strong>Scale:</strong> 100s of MB/sec ingestion, queryability across weeks<br>
-                    <strong>Components:</strong> Log collectors, Kafka (durability), Stream processors (Storm/Spark), Storage (Cassandra/S3)<br>
-                    <strong>Design Decisions:</strong> Kafka for high throughput; Cassandra for time-series storage; Elasticsearch for searching<br>
-                    <strong>Interview Gold:</strong> "I used Kafka for durability, parallel processing for fault tolerance, and time-series DB for efficient queries."
-                </div>
-                
-                <h4>Week 7-8: Real-Time Chat System</h4>
-                <div class="card">
-                    <strong>Scale:</strong> 1M concurrent users, 10K msgs/sec per room<br>
-                    <strong>Components:</strong> WebSocket servers, Message queue (Kafka), Distributed cache (Redis), DB<br>
-                    <strong>Design Decisions:</strong> WebSockets for real-time; Redis for message ordering; DB for persistence<br>
-                    <strong>Interview Gold:</strong> "I used WebSockets for bi-directional communication, Redis for state management, and eventual consistency for scalability."
-                </div>
-                
-                <h4>Week 8-9: Low-Latency Search / Trade Lookup Service</h4>
-                <div class="card">
-                    <strong>Scale:</strong> 100M+ documents, sub-100ms query latency<br>
-                    <strong>Components:</strong> Web crawler, Indexer, Inverted index (Elasticsearch), Query engine, Ranking<br>
-                    <strong>Design Decisions:</strong> Distributed crawling; parallel indexing; sharded search clusters<br>
-                    <strong>Interview Gold:</strong> "I separated crawling, indexing, and searching to parallelize and scale independently."
-                </div>
-                
-                <h3>Key Tradeoffs (Interview Checklist)</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tradeoff</th>
-                            <th>Option A</th>
-                            <th>Option B</th>
-                            <th>When to Choose</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Consistency</strong></td>
-                            <td>Strong (sync replication)</td>
-                            <td>Eventual (async)</td>
-                            <td>Financial → strong; Social → eventual</td>
-                        </tr>
-                        <tr>
-                            <td><strong>SQL vs NoSQL</strong></td>
-                            <td>SQL (structured, ACID)</td>
-                            <td>NoSQL (flexible, scale)</td>
-                            <td>Relational data → SQL; massive scale → NoSQL</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Cache Invalidation</strong></td>
-                            <td>TTL (simple)</td>
-                            <td>Event-driven (accurate)</td>
-                            <td>High freshness critical → event-driven</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Processing</strong></td>
-                            <td>Real-time (low latency)</td>
-                            <td>Batch (cost-effective)</td>
-                            <td>Time-sensitive (fraud) → real-time; reporting → batch</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <p class="timestamp">Master HLD weeks 5+; full mocks weeks 15+ (60% HLD, 30% DSA, 10% behavioral)</p>
             </section>
 
             <!-- C# GUIDE SECTION -->
@@ -2672,19 +2612,6 @@ public void Dfs(int r, int c, bool[,] visited, int[][] grid)
                         <li>SQL vs NoSQL, replication, sharding, consistency models.</li>
                     </ul>
 
-                    <details class="solution-group" id="sol-sql-left-join">
-                        <summary>✅ Solution: INNER JOIN vs LEFT JOIN (Users and Orders)</summary>
-                        <p><strong>INNER JOIN:</strong> Returns only users who have at least one matching order.</p>
-                        <p><strong>LEFT JOIN:</strong> Returns every user. If a user has no matching order, the order columns are <code>NULL</code>.</p>
-                        <pre>SELECT
-    u.name AS user_name,
-    o.amount
-FROM Users AS u
-LEFT JOIN Orders AS o
-    ON o.user_id = u.id;</pre>
-                        <p>Use <code>LEFT JOIN</code> because the requirement says to include users with no orders.</p>
-                        <p><strong>Common mistake:</strong> Adding an order filter in the <code>WHERE</code> clause can remove users with no orders and accidentally make the query behave like an inner join.</p>
-                    </details>
                 </details>
 
                 <details class="theory-group" open>
@@ -2775,6 +2702,7 @@ LEFT JOIN Orders AS o
             <p style="margin-top: 10px; font-size: 0.9em;">Strategy: Gate (DSA 1–5) → Differentiate (LLD 2–10) → Leverage (HLD 5–18) → Mock Interviews (15–20)</p>
         </div>
     </div>
+    <script src="./dashboard-data.js"></script>
     <script>
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabPanels = document.querySelectorAll('.tab-panel');
@@ -2884,24 +2812,339 @@ LEFT JOIN Orders AS o
         }
 
         async function loadChecklistDefinitions() {
+            if (window.CODING_MENTOR_DATA?.definitions) return window.CODING_MENTOR_DATA.definitions;
             const response = await fetch('./checklist-items.json', { cache: 'no-store' });
             if (!response.ok) throw new Error(`Checklist definition request failed: ${response.status}`);
             return response.json();
         }
 
+        async function loadFullCsesCatalog() {
+            if (window.CODING_MENTOR_DATA?.cses) {
+                return window.CODING_MENTOR_DATA.cses.map((group) => ({
+                    title: `CSES ${group.category}`,
+                    items: group.items.map((item) => {
+                        const key = `cses-task-${item.id}`;
+                        CSES_TASK_IDS[key] = item.id;
+                        CSES_LABELS[key] = item.title;
+                        return key;
+                    })
+                }));
+            }
+            const catalogUrl = window.location.protocol === 'http:'
+                ? '/cses-problemset'
+                : 'https://cses.fi/problemset/';
+            const response = await fetch(catalogUrl, { cache: 'no-store' });
+            if (!response.ok) throw new Error(`CSES catalog request failed: ${response.status}`);
+            const markup = await response.text();
+            const catalogDocument = new DOMParser().parseFromString(markup, 'text/html');
+            const groups = new Map();
+            let currentCategory = '';
+
+            catalogDocument.querySelectorAll('h2, h3, a[href*="/problemset/task/"]').forEach((node) => {
+                if (node.matches('h2, h3')) {
+                    const heading = node.textContent.trim();
+                    if (CSES_CATEGORY_TARGETS[heading]) currentCategory = heading;
+                    return;
+                }
+                const match = node.getAttribute('href')?.match(/\/problemset\/task\/(\d+)$/);
+                if (!match || !currentCategory) return;
+                const taskId = match[1];
+                const key = `cses-task-${taskId}`;
+                CSES_TASK_IDS[key] = Number(taskId);
+                CSES_LABELS[key] = node.textContent.replace(/\s+/g, ' ').trim();
+                if (!groups.has(currentCategory)) groups.set(currentCategory, []);
+                groups.get(currentCategory).push(key);
+            });
+
+            if (groups.size === 0) throw new Error('No CSES tasks found in official catalog');
+            return Array.from(groups, ([category, items]) => ({
+                title: `CSES ${category}`,
+                items: Array.from(new Set(items))
+            }));
+        }
+
+        const ADVANCED_FUSION_GROUP = {
+            title: 'Advanced Fusion Patterns',
+            items: [
+                'dsa-fusion-lru-lfu-ttl-median',
+                'dsa-fusion-segment-tree-trade-stream',
+                'dsa-fusion-monotonic-deque-window',
+                'dsa-fusion-trie-grid-search',
+                'dsa-fusion-constrained-dijkstra',
+                'dsa-fusion-dsu-settlement-cycle',
+                'dsa-fusion-sliding-window-top-k',
+                'dsa-fusion-sweep-line-bond-overlap'
+            ]
+        };
+
+        function ensureAdvancedFusionGroup(definitions) {
+            if (!definitions.groups.some((group) => group.title === ADVANCED_FUSION_GROUP.title)) {
+                definitions.groups.push(ADVANCED_FUSION_GROUP);
+            }
+            return definitions;
+        }
+
+        const CSES_LABELS = {};
+        const CSES_CATEGORY_TARGETS = {
+            'Introductory Problems': 'Arrays / Strings / HashMap',
+            'Sorting and Searching': 'Sorting / Searching / Binary Search / Range Queries',
+            'Dynamic Programming': 'Dynamic Programming',
+            'Graph Algorithms': 'Trees / Graphs / BFS / DFS',
+            'Range Queries': 'Sorting / Searching / Binary Search / Range Queries',
+            'Tree Algorithms': 'Trees / Graphs / BFS / DFS',
+            'Mathematics': 'Greedy / Hashing / Bit Manipulation',
+            'String Algorithms': 'Arrays / Strings / HashMap',
+            'Geometry': 'Sorting / Searching / Binary Search / Range Queries',
+            'Advanced Techniques': 'Heaps / Stacks / Queues / Deque',
+            'Sliding Window Problems': 'Sliding Window / Two-Pointer',
+            'Interactive Problems': 'Backtracking / Recursion',
+            'Bitwise Operations': 'Greedy / Hashing / Bit Manipulation',
+            'Construction Problems': 'Backtracking / Recursion',
+            'Advanced Graph Problems': 'Trees / Graphs / BFS / DFS',
+            'Counting Problems': 'Dynamic Programming',
+            'Additional Problems I': 'Sorting / Searching / Binary Search / Range Queries',
+            'Additional Problems II': 'Dynamic Programming'
+        };
+
+        const CSES_TASK_IDS = {
+            'cses-weird-algorithm': 1068, 'cses-missing-number': 1083, 'cses-repetitions': 1069,
+            'cses-increasing-array': 1094, 'cses-permutations': 1070, 'cses-number-spiral': 1071,
+            'cses-two-knights': 1072, 'cses-two-sets': 1092, 'cses-bit-strings': 1617,
+            'cses-coin-piles': 1754, 'cses-creating-strings': 1622, 'cses-apple-division': 1623,
+            'cses-distinct-numbers': 1621, 'cses-apartments': 1084, 'cses-ferris-wheel': 1090,
+            'cses-concert-tickets': 1091, 'cses-restaurant-customers': 1619, 'cses-movie-festival': 1629,
+            'cses-sum-of-two-values': 1640, 'cses-maximum-subarray-sum': 1643, 'cses-stick-lengths': 1074,
+            'cses-missing-coin-sum': 2183, 'cses-collecting-numbers': 2216, 'cses-playlist': 1141,
+            'cses-towers': 1073, 'cses-traffic-lights': 1163, 'cses-subarray-sums-i': 1660,
+            'cses-dice-combinations': 1633, 'cses-minimizing-coins': 1634, 'cses-coin-combinations-i': 1635,
+            'cses-coin-combinations-ii': 1636, 'cses-removing-digits': 1637, 'cses-grid-paths-i': 1638,
+            'cses-book-shop': 1158, 'cses-array-description': 1746, 'cses-edit-distance': 1639,
+            'cses-rectangle-cutting': 1744, 'cses-money-sums': 1745, 'cses-projects': 1140,
+            'cses-counting-rooms': 1192, 'cses-labyrinth': 1193, 'cses-building-roads': 1666,
+            'cses-message-route': 1667, 'cses-building-teams': 1668, 'cses-round-trip': 1669,
+            'cses-monsters': 1194, 'cses-shortest-routes-i': 1671, 'cses-flight-discount': 1195,
+            'cses-cycle-finding': 1197, 'cses-course-schedule': 1679, 'cses-road-reparation': 1675,
+            'cses-road-construction': 1676, 'cses-giant-pizza': 1684,
+            'cses-static-range-sum-queries': 1646, 'cses-static-range-minimum-queries': 1647,
+            'cses-dynamic-range-sum-queries': 1648, 'cses-dynamic-range-minimum-queries': 1649,
+            'cses-range-xor-queries': 1650, 'cses-forest-queries': 1652, 'cses-hotel-queries': 1143,
+            'cses-subarray-sum-queries': 1190, 'cses-subordinates': 1674, 'cses-tree-matching': 1130,
+            'cses-tree-diameter': 1131, 'cses-tree-distances-i': 1132, 'cses-company-queries-i': 1687,
+            'cses-distance-queries': 1135, 'cses-subtree-queries': 1137, 'cses-finding-a-centroid': 2079,
+            'cses-josephus-queries': 2164, 'cses-exponentiation': 1095, 'cses-counting-divisors': 1713,
+            'cses-common-divisors': 1081, 'cses-word-combinations': 1731, 'cses-string-matching': 1753,
+            'cses-finding-borders': 1732, 'cses-minimal-rotation': 1110
+        };
+
+        const EASY_QUESTION_KEYS = new Set([
+            'dsa-two-sum', 'dsa-contains-duplicate', 'dsa-valid-anagram', 'dsa-valid-palindrome',
+            'dsa-majority-element', 'dsa-move-zeroes', 'dsa-plus-one', 'dsa-reverse-linked-list',
+            'dsa-merge-two-sorted-lists', 'dsa-middle-of-linked-list', 'dsa-max-depth-binary-tree',
+            'dsa-invert-binary-tree', 'dsa-flood-fill', 'dsa-climbing-stairs', 'dsa-house-robber',
+            'cses-weird-algorithm', 'cses-missing-number', 'cses-repetitions', 'cses-increasing-array',
+            'cses-permutations', 'cses-two-knights', 'cses-bit-strings', 'cses-coin-piles',
+            'cses-distinct-numbers', 'cses-apartments', 'cses-ferris-wheel', 'cses-restaurant-customers',
+            'cses-movie-festival', 'cses-stick-lengths', 'cses-dice-combinations', 'cses-minimizing-coins',
+            'cses-removing-digits', 'cses-counting-rooms', 'cses-building-roads', 'cses-building-teams',
+            'cses-static-range-sum-queries', 'cses-static-range-minimum-queries', 'cses-subordinates'
+        ]);
+
+        const HARD_QUESTION_KEYS = new Set([
+            'dsa-trapping-rain-water', 'dsa-longest-palindromic-substring', 'dsa-first-missing-positive',
+            'dsa-median-of-two-sorted-arrays', 'dsa-minimum-window-substring', 'dsa-serialize-deserialize-binary-tree',
+            'dsa-word-ladder', 'dsa-largest-rectangle-histogram', 'dsa-longest-valid-parentheses',
+            'dsa-edit-distance', 'dsa-regular-expression-matching', 'dsa-distinct-subsequences',
+            'cses-traffic-lights', 'cses-subarray-sums-i', 'cses-coin-combinations-ii', 'cses-array-description',
+            'cses-flight-discount', 'cses-cycle-finding', 'cses-giant-pizza', 'cses-hotel-queries',
+            'cses-distance-queries', 'cses-finding-a-centroid', 'cses-minimal-rotation',
+            'dsa-fusion-lru-lfu-ttl-median', 'dsa-fusion-segment-tree-trade-stream',
+            'dsa-fusion-monotonic-deque-window', 'dsa-fusion-trie-grid-search',
+            'dsa-fusion-constrained-dijkstra', 'dsa-fusion-dsu-settlement-cycle',
+            'dsa-fusion-sliding-window-top-k', 'dsa-fusion-sweep-line-bond-overlap'
+        ]);
+
+        const MIXED_TOPIC_LABELS = {
+            'Arrays / Strings / HashMap': 'HashMap + Prefix Sum',
+            'Sliding Window / Two-Pointer': 'Sliding Window + Deque',
+            'Linked List': 'HashMap + Doubly Linked List',
+            'Trees / Graphs / BFS / DFS': 'Graph + Shortest Path',
+            'Heaps / Stacks / Queues / Deque': 'Heap + Sliding Window',
+            'Backtracking / Recursion': 'Trie + Backtracking',
+            'Sorting / Searching / Binary Search / Range Queries': 'Merge Sort + Fenwick Tree',
+            'Dynamic Programming': 'DP + Graph State',
+            'Greedy / Hashing / Bit Manipulation': 'Greedy + Prefix State',
+            'Advanced Fusion Patterns': 'Three-Pattern Constraint Checkpoint',
+            'CSES Introductory Problems': 'Math + Constructive Reasoning',
+            'CSES Sorting and Searching': 'Greedy + Ordered Set',
+            'CSES Dynamic Programming': 'DP + Optimization',
+            'CSES Graph Algorithms': 'Graph + DP / Shortest Path',
+            'Sorting / Searching / Binary Search / Range Queries': 'Segment Tree + Lazy Propagation',
+            'CSES Tree Algorithms': 'Tree + Binary Lifting',
+            'CSES Mathematics and String Algorithms': 'Number Theory + String Algorithms'
+        };
+
+        const CSES_TOPIC_TARGETS = {
+            'CSES Introductory Problems': 'Arrays / Strings / HashMap',
+            'CSES Sorting and Searching': 'Sorting / Searching / Binary Search / Range Queries',
+            'CSES Dynamic Programming': 'Dynamic Programming',
+            'CSES Graph Algorithms': 'Trees / Graphs / BFS / DFS',
+            'CSES Range Queries': 'Sorting / Searching / Binary Search / Range Queries',
+            'CSES Tree Algorithms': 'Trees / Graphs / BFS / DFS',
+            'CSES Mathematics and String Algorithms': 'Arrays / Strings / HashMap'
+        };
+
+        function checklistGroupTarget(title) {
+            if (CSES_TOPIC_TARGETS[title]) return CSES_TOPIC_TARGETS[title];
+            if (title === 'Sorting / Searching / Binary Search') {
+                return 'Sorting / Searching / Binary Search / Range Queries';
+            }
+            if (title.startsWith('CSES ')) {
+                const category = title.replace(/^CSES /, '');
+                return CSES_CATEGORY_TARGETS[category] || title;
+            }
+            return title;
+        }
+
+        function getQuestionLevel(key) {
+            if (EASY_QUESTION_KEYS.has(key)) return 'Easy';
+            if (HARD_QUESTION_KEYS.has(key)) return 'Hard';
+            return 'Medium';
+        }
+
+        function sortChecklistItemsByDifficulty(list) {
+            const items = Array.from(list.querySelectorAll(':scope > li')).filter((item) => {
+                const key = item.querySelector('input[data-key]')?.dataset.key || '';
+                return key.startsWith('dsa-') || key.startsWith('cses-');
+            });
+            if (items.length === 0) return;
+
+            const difficultyOrder = { Easy: 0, Medium: 1, Hard: 2 };
+            items.sort((left, right) => {
+                const leftKey = left.querySelector('input[data-key]').dataset.key;
+                const rightKey = right.querySelector('input[data-key]').dataset.key;
+                return difficultyOrder[getQuestionLevel(leftKey)] - difficultyOrder[getQuestionLevel(rightKey)];
+            });
+            items.forEach((item) => list.appendChild(item));
+        }
+
+        function decorateQuestionList(list, groupTitle) {
+            const items = Array.from(list.querySelectorAll(':scope > li'));
+            items.forEach((item, index) => {
+                const checkbox = item.querySelector('input[data-key]');
+                if (!checkbox || !checkbox.dataset.key.startsWith('dsa-') && !checkbox.dataset.key.startsWith('cses-')) return;
+                if (!item.querySelector('.question-level')) {
+                    const level = document.createElement('span');
+                    const levelName = getQuestionLevel(checkbox.dataset.key);
+                    level.className = `question-level question-level-${levelName.toLowerCase()}`;
+                    level.textContent = levelName;
+                    item.appendChild(level);
+                }
+                if (index === items.length - 1 && MIXED_TOPIC_LABELS[groupTitle] && !item.querySelector('.mixed-topic-label')) {
+                    const mixed = document.createElement('span');
+                    mixed.className = 'mixed-topic-label';
+                    mixed.textContent = `Mixed: ${MIXED_TOPIC_LABELS[groupTitle]}`;
+                    item.appendChild(mixed);
+                }
+            });
+        }
+
+        function mergeCsesTopicsInMarkup() {
+            Object.entries(CSES_TOPIC_TARGETS).forEach(([sourceTitle, targetTitle]) => {
+                const sourceHeading = sourceTitle === 'CSES Range Queries'
+                    ? 'Sorting / Searching / Binary Search / Range Queries'
+                    : sourceTitle.replace(/^CSES /, '');
+                const sourceList = Array.from(document.querySelectorAll('ul.checklist')).find((list) => {
+                    return list.closest('details')?.querySelector(':scope > summary')?.textContent.trim() === sourceHeading &&
+                        list.querySelector('input[data-key^="cses-"]');
+                });
+                const targetList = Array.from(document.querySelectorAll('ul.checklist')).find((list) => {
+                    return list.querySelector('input[data-key^="dsa-"]') &&
+                        list.closest('details')?.querySelector(':scope > summary')?.textContent.trim() === targetTitle;
+                });
+                if (!sourceList || !targetList || sourceList === targetList) return;
+
+                const sourceItems = Array.from(sourceList.children).filter((item) => {
+                    return item.querySelector('input[data-key^="cses-"]');
+                });
+                targetList.append(...sourceItems);
+                if (sourceList.children.length === 0) {
+                    const sourceDetails = sourceList.closest('details');
+                    sourceDetails?.remove();
+                }
+            });
+        }
+
+        function removeStandaloneCsesTopicDetails() {
+            const mergedTopicTitles = new Set([
+                'Introductory Problems',
+                'Sorting and Searching',
+                'Dynamic Programming',
+                'Graph Algorithms',
+                'Tree Algorithms',
+                'Mathematics and String Algorithms',
+                'Sorting / Searching / Binary Search / Range Queries'
+            ]);
+            document.querySelectorAll('#dsa details').forEach((details) => {
+                const title = details.querySelector(':scope > summary')?.textContent.trim() || '';
+                const list = details.querySelector(':scope > ul.checklist');
+                if (!mergedTopicTitles.has(title) || !list) return;
+                const hasDsaItem = list.querySelector('input[data-key^="dsa-"]');
+                const hasCsesItem = list.querySelector('input[data-key^="cses-"]');
+                if (!hasDsaItem && hasCsesItem) details.remove();
+            });
+        }
+
+        function createPlatformLink(key, label) {
+            const link = document.createElement('a');
+            link.className = 'checklist-platform-link';
+            link.target = '_blank';
+            link.rel = 'noopener';
+
+            if (CSES_TASK_IDS[key]) {
+                link.href = `https://cses.fi/problemset/task/${CSES_TASK_IDS[key]}`;
+                link.textContent = 'Solve on CSES';
+                return link;
+            }
+
+            if (key.startsWith('dsa-')) {
+                link.href = `https://leetcode.com/problemset/?search=${encodeURIComponent(label)}`;
+                link.textContent = 'Find on LeetCode';
+                return link;
+            }
+
+            return null;
+        }
+
+        function addPlatformLinksToExistingChecklistItems() {
+            document.querySelectorAll('ul.checklist > li').forEach((item) => {
+                const checkbox = item.querySelector('input[data-key]');
+                if (!checkbox || item.querySelector('.checklist-platform-link')) return;
+                const label = item.querySelector('label');
+                const platformLink = createPlatformLink(checkbox.dataset.key, label?.textContent.trim() || checkbox.dataset.key);
+                if (platformLink) item.appendChild(platformLink);
+            });
+        }
+
         function renderChecklistDefinitions(definitions) {
             if (!definitions || !Array.isArray(definitions.groups)) return;
+
+            const mergedGroups = new Map();
+            definitions.groups.forEach((group) => {
+                const targetTitle = checklistGroupTarget(group.title);
+                if (!mergedGroups.has(targetTitle)) mergedGroups.set(targetTitle, []);
+                mergedGroups.get(targetTitle).push(...group.items);
+            });
 
             const checklistDetails = Array.from(document.querySelectorAll('details')).filter((details) => {
                 return details.querySelector(':scope > ul.checklist');
             });
 
-            definitions.groups.forEach((group) => {
+            mergedGroups.forEach((items, targetTitle) => {
                 const details = checklistDetails.find((candidate) => {
                     const title = candidate.querySelector(':scope > summary')?.textContent.trim() || '';
-                    return title === group.title ||
-                        (group.title === 'LLD Problems' && title.includes('LLD Question Checklist')) ||
-                        (group.title === 'HLD Problems' && title.includes('HLD Question Checklist'));
+                    return title === targetTitle ||
+                        (targetTitle === 'LLD Problems' && title.includes('LLD Question Checklist')) ||
+                        (targetTitle === 'HLD Problems' && title.includes('HLD Question Checklist'));
                 });
                 if (!details) return;
 
@@ -2909,16 +3152,21 @@ LEFT JOIN Orders AS o
                 const existingLabels = new Map(Array.from(list.querySelectorAll(':scope > li input[data-key]')).map((input) => {
                     return [input.dataset.key, input.closest('label')?.textContent.trim() || input.dataset.key];
                 }));
-                list.replaceChildren(...group.items.map((key) => {
+                list.replaceChildren(...items.map((key) => {
                     const item = document.createElement('li');
                     const label = document.createElement('label');
                     const checkbox = document.createElement('input');
                     checkbox.type = 'checkbox';
                     checkbox.dataset.key = key;
-                    label.append(checkbox, ` ${existingLabels.get(key) || key}`);
+                    const itemLabel = existingLabels.get(key) || CSES_LABELS[key] || key;
+                    label.append(checkbox, ` ${itemLabel}`);
                     item.appendChild(label);
+                    const platformLink = createPlatformLink(key, itemLabel);
+                    if (platformLink) item.appendChild(platformLink);
                     return item;
                 }));
+                sortChecklistItemsByDifficulty(list);
+                decorateQuestionList(list, targetTitle);
             });
         }
 
@@ -2989,12 +3237,31 @@ LEFT JOIN Orders AS o
         }
 
         async function initChecklists() {
+            mergeCsesTopicsInMarkup();
+            let definitions;
             try {
-                const definitions = await loadChecklistDefinitions();
-                renderChecklistDefinitions(definitions);
+                definitions = await loadChecklistDefinitions();
+                const fullCsesGroups = await loadFullCsesCatalog();
+                definitions.groups = definitions.groups.filter((group) => !group.title.startsWith('CSES '));
+                definitions.groups.push(...fullCsesGroups);
+                renderChecklistDefinitions(ensureAdvancedFusionGroup(definitions));
             } catch (error) {
                 console.warn('Could not load checklist definitions; using embedded checklist markup.', error);
+                if (definitions) renderChecklistDefinitions(ensureAdvancedFusionGroup(definitions));
             }
+            removeStandaloneCsesTopicDetails();
+            addPlatformLinksToExistingChecklistItems();
+            document.querySelectorAll('details').forEach((details) => {
+                const list = details.querySelector(':scope > ul.checklist');
+                const title = details.querySelector(':scope > summary')?.textContent.trim() || '';
+                const canonicalTitle = Object.keys(MIXED_TOPIC_LABELS).find((name) => {
+                    return name === title || name.replace(/^CSES /, '') === title;
+                }) || title;
+                if (list) {
+                    sortChecklistItemsByDifficulty(list);
+                    decorateQuestionList(list, canonicalTitle);
+                }
+            });
 
             checklistState = await loadChecklistState();
 
